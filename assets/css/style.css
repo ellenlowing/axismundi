@@ -1,0 +1,112 @@
+@font-face {
+    font-family: FoundersGrotesk-Light;
+    src: url('../font/FoundersGrotesk-Light.otf') format("opentype");
+}
+
+html, body {
+  font-family: 'FoundersGrotesk-Light', sans-serif;
+  font-size: 115px;
+  margin: 0;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #000;
+  cursor: default;
+  /* font-size: 1rem; */
+  text-decoration: none;
+}
+
+
+
+/*  Custom style declarations */
+
+.title {
+  /* font-size: calc(1rem + 0.0694%); */
+  position: absolute;
+}
+
+.img {
+  position: absolute;
+}
+
+.block {
+  /* background-color: #000; */
+  /* height: calc(6.67% - 5px); */
+  position: absolute;
+}
+
+.paragraph {
+  font-size: 14px;
+  padding-left: 8px;
+  padding-top: 0px;
+}
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+/* .text {
+  height: 64px;
+  line-height: 0.8rem;
+  position: absolute;
+} */
+
+/* a[class*='left-'] {
+  position: absolute;
+
+} */
+
+.left-0 {
+  left: 0px;
+}
+
+.left-1 {
+  left: calc(6.67% - 5px);
+}
+
+.left-2 {
+  left: calc(13.33% - 5px);
+}
+
+/* a[class*='top-'] {
+  position: absolute;
+
+} */
+
+.top-3 {
+  /* top: 6.67%; */
+  /* top:  */
+}
+
+.top-4 {
+
+}
+
+#img-fluid {
+  top: 0px;
+  right: 0px;
+}
+
+#img-motion {
+  bottom: 0px;
+  right: 0px;
+}
+
+/*
+#fluid:hover {
+  color: white;
+  -webkit-text-stroke: 1.0px black;
+}
+
+#motion:hover {
+  color: black;
+  -webkit-text-stroke: 1.0px white;
+} */
