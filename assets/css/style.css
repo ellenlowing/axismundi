@@ -16,16 +16,15 @@ a:hover,
 a:active {
   color: #000;
   cursor: default;
-  /* font-size: 1rem; */
   text-decoration: none;
 }
-
 
 
 /*  Custom style declarations */
 
 .title {
-  /* font-size: calc(1rem + 0.0694%); */
+  cursor: default;
+  margin: 0;
   position: absolute;
 }
 
@@ -33,15 +32,19 @@ a:active {
   position: absolute;
 }
 
-.block {
-  /* background-color: #000; */
-  /* height: calc(6.67% - 5px); */
+.home .block {
   position: absolute;
+}
+
+.fluid .block {
+  position: relative;
 }
 
 .paragraph {
   font-size: 14px;
+  letter-spacing: 0.97px;
   padding-left: 8px;
+  padding-right: 8px;
   padding-top: 0px;
 }
 
@@ -52,17 +55,6 @@ a:active {
 .hide {
   visibility: hidden;
 }
-
-/* .text {
-  height: 64px;
-  line-height: 0.8rem;
-  position: absolute;
-} */
-
-/* a[class*='left-'] {
-  position: absolute;
-
-} */
 
 .left-0 {
   left: 0px;
@@ -76,37 +68,56 @@ a:active {
   left: calc(13.33% - 5px);
 }
 
-/* a[class*='top-'] {
-  position: absolute;
-
-} */
-
-.top-3 {
-  /* top: 6.67%; */
-  /* top:  */
-}
-
-.top-4 {
-
+.right-6 {
+  right: calc(6.67%);
 }
 
 #img-fluid {
+  letter-spacing: -1.46px;
   top: 0px;
   right: 0px;
 }
 
 #img-motion {
+  letter-spacing: -1.12px;
   bottom: 0px;
   right: 0px;
 }
 
-/*
-#fluid:hover {
-  color: white;
-  -webkit-text-stroke: 1.0px black;
+#return-btn {
+  position: absolute;
+  left: 2%;
+  top: 5%;
 }
 
-#motion:hover {
-  color: black;
-  -webkit-text-stroke: 1.0px white;
-} */
+@media only screen and (max-width: 480px) {
+  .left-1 {
+    left: calc(20% - 5px);
+  }
+
+  .paragraph {
+    font-size: 12px;
+    letter-spacing: 0.83px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 0px;
+  }
+
+  .title {
+    position: absolute;
+  }
+
+  #arrow {
+    position: absolute;
+  }
+
+  #img-fluid {
+    letter-spacing: -1.19px;
+    right: 0px;
+  }
+
+  #img-motion {
+    letter-spacing: -0.87px;
+    right: 0px;
+  }
+}

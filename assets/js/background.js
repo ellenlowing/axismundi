@@ -5,6 +5,10 @@ var bgMode;
 var strokeMode;
 var bgChanged;
 
+// 0: small, 1: large
+var responsiveMode;
+var minWidth = 480;
+
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0, 0);
@@ -13,7 +17,13 @@ function setup() {
   document.getElementById('title-motion').addEventListener('mouseover', onHoverMotion);
   document.getElementById('title-fluid').addEventListener('mouseout', onLeaveFluid);
   document.getElementById('title-motion').addEventListener('mouseout', onLeaveMotion);
-  maxVerticalLines = 15;      // number of vertical lines is fixed
+  if( windowWidth <= minWidth ) {
+    responsiveMode = 0;
+    maxVerticalLines = 5;
+  } else {
+    responsiveMode = 1;
+    maxVerticalLines = 15;
+  }
   grid_size = windowWidth / maxVerticalLines;
   bgMode = 255;
   strokeMode = 0;
@@ -28,17 +38,36 @@ function draw() {
   background(bgMode);
   stroke(strokeMode);
   for(var x = grid_size; x < windowWidth; x+=grid_size) {
-    if (x >= grid_size && x <= grid_size * 4) {
-      var numHorizontalLines = Math.floor(windowHeight / grid_size);
-      var blockTop = (numHorizontalLines - 1) * grid_size;
-      line(x, 0, x, blockTop);
-      line(x, blockTop + grid_size, x, windowHeight);
-    } else {
-      line(x, 0, x, windowHeight);
+    if( responsiveMode == 1 ) {
+      if (x >= grid_size && x <= grid_size * 3) {
+        var numHorizontalLines = Math.floor(windowHeight / grid_size);
+        var blockTop = (numHorizontalLines - 1) * grid_size;
+        line(x, 0, x, blockTop);
+        line(x, blockTop + grid_size, x, windowHeight);
+      } else {
+        line(x, 0, x, windowHeight);
+      }
+    } else if (responsiveMode == 0) {
+      if (x >= grid_size && x <= grid_size * 2) {
+        var numHorizontalLines = Math.floor(windowHeight / grid_size);
+        var blockTop = (numHorizontalLines - 1) * grid_size;
+        line(x, 0, x, blockTop);
+        line(x, blockTop + 2 * grid_size, x, windowHeight);
+      } else {
+        line(x, 0, x, windowHeight);
+      }
     }
   }
   for(var y = grid_size; y < windowHeight; y+=grid_size) {
-    line(0, y, windowWidth, y);
+    if(responsiveMode == 1) {
+      line(0, y, windowWidth, y);
+    } else if (responsiveMode == 0) {
+      if( y < windowHeight - grid_size ) {
+        line(0, y, windowWidth, y);
+      } else {
+        line(grid_size * 3 , y, windowWidth, y);
+      }
+    }
   }
 }
 
@@ -102,5 +131,12 @@ function onLeaveMotion() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  if( windowWidth <= minWidth ) {
+    responsiveMode = 0;
+    maxVerticalLines = 5;
+  } else {
+    responsiveMode = 1;
+    maxVerticalLines = 15;
+  }
   grid_size = windowWidth / maxVerticalLines;
 }

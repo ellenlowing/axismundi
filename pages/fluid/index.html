@@ -1,0 +1,164 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../assets/css/fluid.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../libraries/p5.min.js"></script>
+  	<script type="text/javascript" src="../../libraries/addons/p5.dom.js"></script>
+  	<!-- <script type="text/javascript" src="../../assets/js/background.js"></script> -->
+  </head>
+  <body>
+    <div class="fluid container">
+      <!-- <a href="../home/index.html">
+        <svg id="return-btn" width="72px" height="72px" viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <desc>Created with Sketch.</desc>
+            <defs>
+                <circle id="path-1" cx="65" cy="137" r="32"></circle>
+                <filter x="-8.6%" y="-8.6%" width="120.3%" height="120.3%" filterUnits="objectBoundingBox" id="filter-2">
+                    <feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0.344892645   0 0 0 0 0.344892645   0 0 0 0 0.344892645  0 0 0 0.517040308 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+                </filter>
+            </defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="fluid_desktop" transform="translate(-30.000000, -102.000000)">
+                    <g id="Oval-3">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#A6C48A" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </svg>
+      </a> -->
+      <div class="row space-1">
+        <div class="col-16"></div>
+      </div>
+      <div class="row space-5">
+        <div class="col-2"></div>
+        <div class="title text col-1 col-offset" id="title-fluid">Fluid</div>
+        <div class="col-6"></div>
+        <div class="text col-5 col-offset" id="description">
+          <div class="paragraph">
+            Fluid is a study of dynamic motion as an ever-changing form.
+            With lights encapsulated in unique scalloped-like cut-out frames, the triptych features three interactive experiences that capture fluid's movement from a microscopic to macroscopic level.
+            The first experience examines fluid in terms of molecular interactions as well as its reactions to changes in environment.
+            The second study experiments with digital fluid simulation, and the third representation of fluid revolves around rain, an everyday natural phenomenon which often reminds one of nostalgia.
+            With sensors set up on individual canvases, the tension of experience shifts as viewers move from one to another canvas and intensifies as they get close to the piece.
+          </div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-8">
+        <div class="col-14">
+          <img class="space-8" src="../../assets/img/vid-fluid.png" alt="">
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-1">
+        <div class="col-15 white-space"></div>
+      </div>
+      <div class="row space-4">
+        <div class="col-6"></div>
+        <div class="col-8">
+          <img class="space-4" src="../../assets/img/img-fluid-1.png" alt="">
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-2 white-space">
+        <div class="col-9"></div>
+        <div class="col-5">
+          <div class="paragraph">
+
+          </div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-4">
+        <div class="col-6"></div>
+        <div class="col-8">
+          <img class="space-4" src="../../assets/img/img-fluid-2.png" alt="">
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-2 white-space">
+        <div class="col-9"></div>
+        <div class="col-5">
+          <div class="paragraph">
+
+          </div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-4">
+        <div class="col-6"></div>
+        <div class="col-8">
+          <img class="space-4" src="../../assets/img/img-fluid-3.png" alt="">
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-2 white-space">
+        <div class="col-9"></div>
+        <div class="col-5">
+          <div class="paragraph">
+
+          </div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-1">
+        <div class="col-1"></div>
+        <div class="col-4">
+          <img class="space-1" id="logo" src="../../assets/img/large-dark-logo.png" alt="">
+        </div>
+        <div class="col-1"></div>
+        <div class="col-2 footer-paragraph footer-offset">
+          <div class="text">
+           On view
+          </div>
+        </div>
+        <div class="col-2 footer-paragraph footer-offset">
+          <div class="text">
+            06.17-21
+          </div>
+        </div>
+        <div class="col-5 footer-paragraph footer-offset footer-right">
+          <div class="text">
+            209 E23 St, NY
+          </div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-1">
+        <div class="col-2">
+        </div>
+        <div class="col-3 footer-nav footer-offset">
+          <div>
+            <a class="text title title-motion" href="../motion/index.html">View:</a>
+          </div>
+        </div>
+        <div class="col-3 footer-nav footer-offset">
+          <div>
+            <a class="text title title-motion" href="../motion/index.html">Motion</a>
+          </div>
+        </div>
+        <div class="col-7"></div>
+      </div>
+      <div class="row space-1">
+        <div class="col-4 white-space">
+          <div class="text copyright">
+            <p>
+              Axis Mundi is a project exploring man’s attempt to override nature with technology and nature’s resistance.
+            </p>
+            <p>
+              © 2019 Ellen Lo & Hilda Wong
+              <br>All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="fluid.js"></script>
+  </body>
+</html>
