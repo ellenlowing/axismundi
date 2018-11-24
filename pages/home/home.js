@@ -103,6 +103,16 @@ function onHoverFluid() {
                           'color': '#FFF',
                           'webkit-text-stroke': '#000 0.5px'
                         });
+
+  // TO ADD: ratio to place img-fluid based on width
+  if(windowWidth > 1175) {
+    $('#img-fluid').css('left', '66.666667vw');
+  } else if (windowWidth < 940) {
+    $('#img-fluid').css('left', '53.333333vw');
+  } else {
+    $('#img-fluid').css('left', '60vw');
+  }
+
   $('#img-fluid').css('height', Math.floor(windowHeight / grid_size) *grid_size + 'px').removeClass('hide').addClass('show');
 }
 
@@ -116,7 +126,15 @@ function onHoverMotion() {
                             'color': '#000',
                             'webkit-text-stroke': '#FFF 0.5px'
                         });
-  $('#img-motion').css('width', ( grid_size * 9 ) + 'px').removeClass('hide').addClass('show');
+
+  // TO ADD: ratio to place img-motion based on width           
+  if(windowWidth > 1106) {
+    $('#img-motion').css('width', ( grid_size * 9 ) + 'px');
+  } else {
+    $('#img-motion').css('height', (windowHeight - grid_size * 3) + 'px');
+  }
+  $('#img-motion').removeClass('hide').addClass('show');
+
   $('.text').css('color', '#FFF');
   $('.about .title').not('.title-motion').css('color', '#FFF');
   $('.white-space').css('color', '#FFF');
