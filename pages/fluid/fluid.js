@@ -30,7 +30,6 @@ function setup() {
   strokeWeight(0.5);
   background(bgMode);
   stroke(strokeMode);
-  resizeElements();
 }
 
 function draw() {
@@ -89,7 +88,7 @@ function onHoverMotion() {
                             '-webkit-text-stroke': ' #FFF 0.5px'
                           } );
   $('.text').css('color', "#FFF");
-  $('#logo').attr('src', '../../assets/img/large-light-logo.png');
+  $('#large-logo').attr('src', '../../assets/img/large-light-logo.png');
   $('.white-space').css('background-color', '#000');
 }
 
@@ -98,7 +97,7 @@ function onLeaveMotion() {
   strokeMode = 0;
   $('.title-motion').css('-webkit-text-stroke', '0px');
   $('.text').css('color', "#000");
-  $('#logo').attr('src', '../../assets/img/large-dark-logo.png');
+  $('#large-logo').attr('src', '../../assets/img/large-dark-logo.png');
   $('.white-space').css('background-color', '#FFF');
 }
 
@@ -113,23 +112,4 @@ function windowResized() {
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * 36;
   resizeCanvas(windowWidth, h);
-  // resizeElements();
-}
-
-function resizeElements() {
-  // $('.title').css({
-  //                   'font-size': (windowWidth / 1440) + 'rem',
-  //                   'letter-spacing': '-1.62px'
-  //                 });
-  // $('#description').css({
-  //                    'width': grid_size * 5 + 'px',
-  //                    'height': grid_size * 5 + 'px'
-  //                 });
-  // $('.top-2').css('top', (grid_size + Math.abs(grid_size - windowWidth / 1440 * 115 + 5)) + 'px');
-  // $('.paragraph').css('font-size', (windowWidth / 1440 * 20) + 'px');
-  // $('.bottom1').css('bottom', h + 'px');
-  // $('#copyrights').css({
-  //                    'width': grid_size * 4 + 'px',
-  //                    'height': grid_size * 0.98 + 'px'
-  //                 });
 }

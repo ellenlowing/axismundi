@@ -3,43 +3,185 @@
     <meta charset="UTF-8">
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
+    <link rel="stylesheet" href="../../assets/css/fluid.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script type="text/javascript" src="../../assets/vendors/jquery.min.js"></script>
     <script type="text/javascript" src="../../libraries/p5.min.js"></script>
   	<script type="text/javascript" src="../../libraries/addons/p5.dom.js"></script>
-  	<script type="text/javascript" src="../../assets/js/background.js"></script>
+  	<!-- <script type="text/javascript" src="../../assets/js/background.js"></script> -->
   </head>
-  <body>
-    <img id="logo" src="../../assets/img/small-dark-logo.png" alt="">
+  <body class="home">
     <div class="home container">
-      <a href="../motion/index.html" class="title left-2 top-3" id="title-motion">Motion</a>
-      <a href="../fluid/index.html" class="title left-1 top-4" id="title-fluid">Fluid</a>
-      <div class="block left-0 bottom-1">
-        <div class="paragraph">
-          <p>
-            Axis Mundi is a project exploring man’s attempt to override nature with technology and nature’s resistance.
-          </p>
-          <p>
-            © 2019 Ellen Lo & Hilda Wong
-            <br>All Rights Reserved.
-          </p>
+      <img class="row space-1" id="logo" src="../../assets/img/small-dark-logo.png" alt="">
+      <div class="row space-1">
+      </div>
+      <div class="row space-1">
+        <div class="col col-2"></div>
+        <div class="title title-motion col col-3 title-offset">
+          <a href="../motion/index.html" class="title-motion">Motion</a>
         </div>
       </div>
-      <svg class="hide" id="arrow" width="30px" height="40px" viewBox="0 0 30 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-          <desc>Created with Sketch.</desc>
-          <defs></defs>
-          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-              <g id="homepage_mobile" transform="translate(-246.000000, -694.000000)" stroke="#585858">
-                  <g id="Group" transform="translate(247.000000, 694.000000)">
-                      <polyline id="Path-7" points="0 23 14.962729 40 28.4884533 23"></polyline>
-                      <path d="M15,39.5951169 L15,0" id="Path-8"></path>
-                  </g>
-              </g>
-          </g>
-      </svg>
+      <div class="row space-1">
+        <div class="col col-1"></div>
+        <div class="title title-fluid col col-2 title-offset">
+          <a href="../fluid/index.html" class="title-fluid">Fluid</a>
+        </div>
+      </div>
+      <div class="row" id="space-between-title-and-copyright"></div>
+      <div class="row space-1">
+        <div class="col-4 white-space">
+          <div class="copyright">
+            <p>
+              Axis Mundi is a project exploring man’s attempt to override nature with technology and nature’s resistance.
+            </p>
+            <p>
+              © 2019 Ellen Lo & Hilda Wong
+              <br>All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
       <img class="img hide" id="img-fluid" src="../../assets/img/home-fluid.png" alt="Fluid">
       <img class="img hide" id="img-motion" src="../../assets/img/home-motion.png" alt="Motion">
+    </div>
+
+    <div class="about container">
+      <div class="row space-1">
+        <div class="col-16" id="divider"></div>
+      </div>
+      <div class="row space-1">
+        <div class="home-btn"></div>
+        <div class="col-16"></div>
+      </div>
+      <div class="row space-5">
+        <div class="col-2"></div>
+        <div class="title title-concept col-4 title-offset">Concept</div>
+        <div class="col-3"></div>
+        <div class="text col-5 col-offset" id="description">
+          <div class="paragraph paragraph-offset">
+            Axis Mundi is a project exploring the attempt of replacing nature with technology and nature’s resistance.
+            The initial inspiration was to build an installation that simulates the movements of waves.
+            The theme was carried on to the second installation, Fluid, mimicking the flow and rhythm of precipitation in nature.
+            The two installations sparked the thought of how a technologically controlled environment can replace nature without losing the raw sensation of walking through nature, as well as translating the organic beauty to a degree of rigidity.
+          </div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-1">
+        <div class="col-2"></div>
+        <div class="title title-code col-3 title-offset">
+          Code
+        </div>
+        <div class="col-4"></div>
+        <div class="title title-design col-3 title-offset">
+          Design
+        </div>
+        <div class="col-3"></div>
+      </div>
+      <div class="row space-5">
+        <div class="col-2"></div>
+        <div class="text col-5" id="description-code">
+          <div class="paragraph paragraph-offset">
+            Motion and Fluid are two physical elements created to challenge the discrete nature of code.
+            To show continual motion, the installations are programmed with computer graphics algorithms known to mimic organic flow, such as Perlin noise and diamond-square algorithm.
+            Through concealing the discrete units of LEDs behind Fluid and servo motors behind Motion, they disguise themselves as a part of nature.
+          </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="text col-5" id="description-design">
+          <div class="paragraph paragraph-offset">
+            The design language was stemmed from the logo, where the circle, representing nature, was forced into an awkward position by the square, representing technology.
+            With a grid system as a representation of technology and as the basis to the visual language, interactive elements responding to the installations are incorporated into the microsite.
+            It further embraces the simulation of nature movements in different medium and nature’s resistance when left on idle state.
+          </div>
+        </div>
+      </div>
+      <div class="row space-6">
+        <div class="col-13">
+          <img class="space-6" src="../../assets/img/about.png" alt="">
+        </div>
+      </div>
+      <div class="row space-1">
+        <div class="col-9"></div>
+        <div class="col-4 space-half white-space white-space-offset">
+          <div class="text copyright">
+            <p>
+              Motion is an installation comprised of 16 motors to simulate the movement of waves.
+              <a class="text" href="../motion/index.html"><u>More info</u></a>
+            </p>
+          </div>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+      <div class="row space-1">
+        <div class="col-1"></div>
+        <div class="col-4">
+          <img class="space-1" id="large-logo" src="../../assets/img/large-dark-logo.png" alt="">
+        </div>
+        <div class="col-1"></div>
+        <div class="col-2 footer-paragraph footer-offset footer-left">
+          <div class="text">
+           On view
+          </div>
+        </div>
+        <div class="col-2 footer-paragraph footer-offset footer-left">
+          <div class="text">
+            06.17-21
+          </div>
+        </div>
+        <div class="col-5 footer-paragraph footer-offset footer-right">
+          <div class="text">
+            209 E23 St, NY
+          </div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row space-1">
+        <div class="col-3">
+        </div>
+        <div class="col-3 footer-nav footer-offset">
+          <div>
+            <a class="title title-view title-motion" href="../motion/index.html">View:</a>
+          </div>
+        </div>
+        <div class="col-3 footer-nav footer-offset">
+          <div>
+            <a class="title title-motion" href="../motion/index.html">Motion</a>
+          </div>
+        </div>
+        <div class="col-6"></div>
+      </div>
+      <div class="row space-1">
+        <div class="col-2">
+        </div>
+        <div class="col-3 footer-nav footer-offset">
+          <div>
+            <a class="title title-view title-fluid" href="../fluid/index.html">View:</a>
+          </div>
+        </div>
+        <div class="col-3 footer-nav footer-offset">
+          <div>
+            <a class="title title-fluid" href="../fluid/index.html">Fluid</a>
+          </div>
+        </div>
+        <div class="col-7"></div>
+      </div>
+      <div class="row space-1">
+        <div class="col-4 white-space white-space-offset">
+          <div class="text copyright">
+            <p>
+              Axis Mundi is a project exploring man’s attempt to override nature with technology and nature’s resistance.
+            </p>
+            <p>
+              © 2019 Ellen Lo & Hilda Wong
+              <br>All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
     <script type="text/javascript" src="home.js"></script>
   </body>

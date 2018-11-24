@@ -1,56 +1,172 @@
-var logo = $( '#logo' );
-var title = $( '.title' );
-var block = $( '.block' );
-var paragraph = $( '.paragraph' );
-var top3 = $( '.top-3' );
-var top4 = $( '.top-4' );
-var bottom1 = $( '.bottom-1' );
-var titleMotion = $('#title-motion');
-var titleFluid = $('#title-fluid');
-var arrow = $('#arrow');
+// Background variables
+var canvas;
+var grid_size;
+var maxVerticalLines;
+var numHorizontalLines;
+var bgMode;
+var strokeMode;
+var bgChanged;
+var responsiveMode; // 0: small, 1: large
+var minWidth = 480;
 
-// init();
-window.addEventListener( 'load', onResize);
-window.addEventListener( 'resize' , onResize);
-
-function init() {
-  windowWidth = $(' window ').width();
+function setup()
+{
   if( windowWidth <= minWidth ) {
-    var grid_size = windowWidth / maxVerticalLines;
-    titleMotion.removeClass(' left-2 ').addClass(' left-1 ');
-    arrow.removeClass(' hide ').addClass(' show ').css();
+    responsiveMode = 0;
+    maxVerticalLines = 5;
+  } else {
+    responsiveMode = 1;
+    maxVerticalLines = 15;
+  }
+  grid_size = windowWidth / maxVerticalLines;
+  numHorizontalLines = 24 + Math.floor(windowHeight / grid_size);
+  h = grid_size * numHorizontalLines;  // 31 is the number of horizontal lines
+  canvas = createCanvas(windowWidth, h);
+  canvas.position(0, 0);
+  canvas.style('z-index', '-1');
+  $(function() {
+    var $body = $(document);
+    $body.bind('scroll', function() {
+      // "Disable" the horizontal scroll.
+      if ($body.scrollLeft() !== 0) {
+        $body.scrollLeft(0);
+      }
+    });
+  });
+  $('.title-motion').bind('mouseover', onHoverMotion).bind('mouseout', onLeaveMotion);
+  $('.title-fluid').bind('mouseover', onHoverFluid).bind('mouseout', onLeaveFluid);
+  $('div.home').not('a').bind('click', scrollToAbout);
+  $('.home-btn').bind('click', scrollToHome);
+  bgMode = 255;
+  strokeMode = 0;
+  bgChanged = false;
+  strokeWeight(0.5);
+  background(bgMode);
+  stroke(strokeMode);
+  $('#space-between-title-and-copyright').addClass('space-' + (Math.floor(windowHeight / grid_size) - 5));
+}
+
+function draw()
+{
+  background(bgMode);
+  stroke(strokeMode);
+  var dividerTop = $('#divider').offset().top;
+
+  // draw vertical lines
+  for(var x = grid_size; x < windowWidth-1; x+=grid_size) {
+    if( responsiveMode == 1 ) {
+      if (x >= grid_size && x < grid_size * 3) {
+        line(x, 0, x, (Math.floor(windowHeight / grid_size) - 1) * grid_size);
+        line(x, Math.floor(windowHeight / grid_size) * grid_size, x, (numHorizontalLines-1)* grid_size);
+        line(x, numHorizontalLines * grid_size, x, h);
+      } else if (x == grid_size * 3){
+        line(x, 0, x, (Math.floor(windowHeight / grid_size) - 1) * grid_size);
+        line(x, Math.floor(windowHeight / grid_size) * grid_size, x, dividerTop + grid_size * 8);
+        line(x, dividerTop + grid_size * 13, x, (numHorizontalLines-1)*grid_size);
+        line(x, numHorizontalLines * grid_size, x, h);
+      } else if(x >= grid_size * 4 && x <= grid_size * 7 - 1) {
+        line(x, 0, x, dividerTop + grid_size * 8);
+        line(x, dividerTop + grid_size * 13, x, h);
+      } else if( x > grid_size * 9 + 1 && x <= grid_size * 13 + 1 ){
+        line(x, 0, x, dividerTop + grid_size * 2);
+        line(x, dividerTop + grid_size * 7, x, dividerTop + grid_size * 8);
+        if(x > grid_size * 13 - 1) line(x, dividerTop + grid_size * 19, x, h);
+        else line(x, dividerTop + grid_size * 19.5, x, h);
+      } else {
+        line(x, 0, x, h);
+      }
+    }
+  }
+
+  // draw horizontal lines
+  for(var y = grid_size; y < h; y+=grid_size) {
+    if(responsiveMode == 1) {
+      // line(0, y, windowWidth, y);
+      if(y > dividerTop + grid_size * 2 + 1 && y < dividerTop + grid_size * 7) {
+        line(0, y, grid_size * 9, y);
+        line(grid_size * 14, y, grid_size * 15, y);
+      } else if (y > dividerTop + grid_size * 8 + 1 && y < dividerTop + grid_size * 13) {
+        line(0, y, grid_size * 2, y);
+        line(grid_size * 7, y, grid_size * 9, y);
+        line(grid_size * 14, y, grid_size * 15, y);
+      } else {
+        line(0, y, windowWidth, y);
+      }
+    }
   }
 }
 
-function onResize () {
-  // small size
+function onHoverFluid() {
+  bgMode = 255;
+  strokeMode = 0;
+  $('.title-fluid').css({
+                          'color': '#FFF',
+                          'webkit-text-stroke': '#000 0.5px'
+                        });
+  $('#img-fluid').css('height', Math.floor(windowHeight / grid_size) *grid_size + 'px').removeClass('hide').addClass('show');
+}
+
+function onHoverMotion() {
+  bgMode = 0;
+  strokeMode = 255;
+  $('#logo').attr('src', '../../assets/img/small-light-logo.png');
+  $("#large-logo").attr('src', '../../assets/img/large-light-logo.png');
+  $('.title-fluid').css('color', '#FFF');
+  $('.title-motion').css({
+                            'color': '#000',
+                            'webkit-text-stroke': '#FFF 0.5px'
+                        });
+  $('#img-motion').css('width', ( grid_size * 9 ) + 'px').removeClass('hide').addClass('show');
+  $('.text').css('color', '#FFF');
+  $('.about .title').not('.title-motion').css('color', '#FFF');
+  $('.white-space').css('color', '#FFF');
+}
+
+function onLeaveFluid() {
+  bgMode = 255;
+  strokeMode = 0;
+  $('.title-fluid').css({
+                            'color': '#000',
+                            'webkit-text-stroke': '0px'
+                        });
+  $('.title-motion').css('color', '#000');
+  $('#img-fluid').removeClass('show').addClass('hide');
+}
+
+function onLeaveMotion() {
+  bgMode = 255;
+  strokeMode = 0;
+  $('#logo').attr('src', '../../assets/img/small-dark-logo.png');
+  $('#large-logo').attr('src', '../../assets/img/large-dark-logo.png');
+  $('.title-fluid').css('color', 'black');
+  $('.title-motion').css('webkit-text-stroke', '0px');
+  $('#img-motion').removeClass('show').addClass('hide');
+  $('.text').css('color', '#000');
+  $('.about .title').not('.title-motion').css('color', '#000');
+  $('.white-space').css('color', '#000');
+}
+
+function scrollToHome () {
+  $('html, body').animate( {scrollTop: 0}, 1000);
+}
+
+function scrollToAbout () {
+  $('html, body').animate({scrollTop: $('#divider').offset().top + grid_size }, 1000);
+}
+
+function windowResized() {
+  grid_size = windowWidth / maxVerticalLines;
+  numHorizontalLines = 24 + Math.floor(windowHeight / grid_size);
+  h = grid_size * numHorizontalLines;
+  resizeCanvas(windowWidth, h);
   if( windowWidth <= minWidth ) {
-    var grid_size = windowWidth / maxVerticalLines;
-    titleMotion.removeClass(' left-2 ').addClass(' left-1 ');
-    logo.css('height', grid_size + 'px');
-    title.css('font-size', (windowWidth / 375 * 90 / 115) + 'rem');
-    block.css('width', (grid_size * 3) + 'px');
-    block.css('height', (grid_size * 0.98) + 'px');
-    // paragraph.css('font-size', (windowWidth / 1440 * 14) + 'px');
-    top3.css('top', (grid_size * 2 + Math.abs(grid_size - windowWidth / 375 * 90 + 5)) + 'px');
-    top4.css('top', (grid_size * 3 + Math.abs(grid_size - windowWidth / 375 * 90 + 5)) + 'px');
-    bottom1.css('bottom', (windowHeight % grid_size) + 'px');
-    arrow.removeClass(' hide ').addClass(' show ').css({  'top': grid_size * (Math.floor(windowHeight / grid_size) - 0.5) - 20 + 'px',
-                                                          'left': 3.5 * grid_size - 15 + 'px'
-                                                      });
+    responsiveMode = 0;
+    maxVerticalLines = 5;
   } else {
-  // large size
-    var grid_size = windowWidth / maxVerticalLines;
-    titleMotion.removeClass(' left-1 ').addClass(' left-2 ');
-    logo.css('height', grid_size + 'px');
-    title.css('font-size', (windowWidth / 1440) + 'rem');
-    block.css('width', (grid_size * 4) + 'px');
-    block.css('height', (grid_size * 0.98) + 'px');
-    // resizing copyrights font size dynamically
-    paragraph.css('font-size', (windowWidth / 1440 * 14) + 'px');
-    top3.css('top', (grid_size * 2 + Math.abs(grid_size - windowWidth / 1440 * 115 + 5)) + 'px');
-    top4.css('top', (grid_size * 3 + Math.abs(grid_size - windowWidth / 1440 * 115 + 5)) + 'px');
-    bottom1.css('bottom', windowHeight % grid_size + 'px');
-    arrow.removeClass(' show ').addClass(' hide ');
+    responsiveMode = 1;
+    maxVerticalLines = 15;
   }
+  $('#space-between-title-and-copyright').removeClass( (index, className) => {
+    return (className.match (/(^|\s)space-\S+/g) || []).join(' ');
+  }).addClass('space-' + (Math.floor(windowHeight / grid_size) - 5));
 }
