@@ -236,6 +236,12 @@ div.home {
   /* overflow: hidden; */
 }
 
+div.about,
+div.fluid,
+div.motion {
+  cursor: url('../../assets/img/circle-cursor.png'),nesw-resize;
+}
+
 /* html.about,
 html.fluid,
 html.motion,
@@ -281,9 +287,9 @@ body.motion {
   color: #000;
 }
 
-.fluid .white-space {
+/* .fluid .white-space {
   background-color: #FFF;
-}
+} */
 
 .img {
   position: absolute;
@@ -294,9 +300,9 @@ body.motion {
   color: #FFF;
 }
 
-.motion .white-space {
+/* .motion .white-space {
   background-color: #000;
-}
+} */
 
 .paragraph {
   font-size: 1.35vw;
@@ -356,10 +362,10 @@ body.motion {
   visibility: visible;
 }
 
-.white-space-offset {
+/* .white-space-offset {
   position:relative;
   top: 0.05vw;
-}
+} */
 
 /*   Custom element styling   */
 
