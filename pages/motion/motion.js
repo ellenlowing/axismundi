@@ -120,7 +120,7 @@ function draw() {
     rect(left-1, top-1, grid_size+2, grid_size+2);
 
     // draw glitch
-    stroke(255);
+    stroke(strokeMode);
     xOffset = 0;
     yOffset = 0;
     for(var x = left; x <= right; x += grid_size) {

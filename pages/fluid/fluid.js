@@ -11,6 +11,11 @@ var responsiveMode;
 var minWidth = 480;
 var h = 1024;
 
+// background gradient variables
+var color, colorIndex;
+var colorLimX, colorLimY;
+var secondaryColors;
+
 function setup() {
   if( windowWidth <= minWidth ) {
     responsiveMode = 0;
@@ -37,16 +42,29 @@ function setup() {
   bgMode = 255;
   strokeMode = 0;
   bgChanged = false;
-  strokeWeight(0.5);
+  secondaryColors = [color(119, 210, 175),
+                      color(104, 140, 90),
+                      color(167, 195, 140),
+                      color(246, 231, 204),
+                      color(220, 151, 137)];
+  colorIndex = random(5);
+  color = secondaryColors[int(colorIndex)];
+  colorLimX = windowWidth / grid_size / 2;
+  colorLimY = windowHeight / grid_size / 2;
+  strokeWeight(0.8);
   background(bgMode);
   stroke(strokeMode);
 }
 
 function draw() {
   background(bgMode);
-  stroke(strokeMode);
+  // stroke(strokeMode);
   for(var x = grid_size; x < windowWidth; x+=grid_size) {
     if( responsiveMode == 1 ) {
+      var dist = abs(x - mouseX) / grid_size;
+      var alpha = dist / colorLimX * (-255) + 255;
+      if(dist < colorLimX) stroke(red(color), green(color), blue(color), alpha);
+      else stroke(200);
       if (x > grid_size * 9 + 1 && x < grid_size * 14 - 1) {
         line(x, 0, x, grid_size);
         if(x > grid_size * 11 - 1 && x < grid_size * 14 - 1) line(x, 14.5 * grid_size, x, grid_size * 15);
@@ -71,6 +89,10 @@ function draw() {
   }
   for(var y = grid_size; y < h; y+=grid_size) {
     if(responsiveMode == 1) {
+      var dist = abs(y - mouseY) / grid_size;
+      var alpha = dist / colorLimY * (-255) + 255;
+      if(dist < colorLimY) stroke(red(color), green(color), blue(color), alpha);
+      else stroke(200);
       if( (y > grid_size && y <= grid_size * 5) || (y >= grid_size * 19 + 1 && y <= grid_size * 21 - 1) || (y >= grid_size * 25 + 1 && y <= grid_size * 27 - 1) || (y >= grid_size * 31 + 1 && y <= grid_size * 33 - 1) ) {
         line(0, y, grid_size * 9, y);
         line(grid_size * 14, y, windowWidth, y);
@@ -121,5 +143,6 @@ function windowResized() {
   }
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * numHorizontalLines;
+  colorLimY = windowHeight / grid_size / 2;
   resizeCanvas(windowWidth, h);
 }
