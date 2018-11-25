@@ -237,9 +237,12 @@ div.home {
 }
 
 div.about,
-div.fluid,
+div.fluid {
+  cursor: url('../../assets/img/circle-cursor.png'), auto;
+}
+
 div.motion {
-  cursor: url('../../assets/img/circle-cursor.png'),nesw-resize;
+  cursor: url('../../assets/img/white-circle-cursor.png'), auto;
 }
 
 /* html.about,
