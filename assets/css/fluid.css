@@ -7,8 +7,6 @@ html, body {
   font-family: 'FoundersGrotesk-Light', sans-serif;
   font-size: 115px;
   margin: 0;
-  /* max-width: 100%;
-  overflow-x: hidden; */
 }
 
 ::-webkit-scrollbar {
@@ -23,6 +21,14 @@ a:active {
   color: #000;
   cursor: default;
   text-decoration: none;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
 /* a.title-motion,
