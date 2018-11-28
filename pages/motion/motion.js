@@ -8,7 +8,7 @@ var bgChanged;
 
 // 0: small, 1: large
 var responsiveMode;
-var minWidth = 480;
+var minWidth = 600;
 var h = 1024;
 
 // glitch variables

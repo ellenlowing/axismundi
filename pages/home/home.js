@@ -7,7 +7,7 @@ var bgMode;
 var strokeMode;
 var bgChanged;
 var responsiveMode; // 0: small, 1: large
-var mobileWidth = 480; // mobile size
+var mobileWidth = 600; // mobile size
 
 function setup()
 {

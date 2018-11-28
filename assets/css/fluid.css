@@ -435,7 +435,7 @@ body.motion {
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   html, body {
     font-size: 90px;
   }
