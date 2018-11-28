@@ -19,7 +19,11 @@ function setup()
     maxVerticalLines = 15;
   }
   grid_size = windowWidth / maxVerticalLines;
-  numHorizontalLines = 24 + Math.floor(windowHeight / grid_size);
+  if(responsiveMode == 1 ) {
+    numHorizontalLines = 24 + Math.floor(windowHeight / grid_size);
+  } else if (responsiveMode == 0) {
+    numHorizontalLines = 32 + Math.floor(windowHeight / grid_size);
+  }
   h = grid_size * numHorizontalLines;  // 31 is the number of horizontal lines
   canvas = createCanvas(windowWidth, h);
   canvas.position(0, 0);
@@ -79,10 +83,18 @@ function draw()
     } else if ( responsiveMode == 0 ) {
       if( x == grid_size * 1) {
         line(x, 0, x, (Math.floor(windowHeight / grid_size) - 1) * grid_size);
-        line(x, (Math.floor(windowHeight / grid_size) + 1) * grid_size, x, h);
+        line(x, (Math.floor(windowHeight / grid_size) + 1) * grid_size, x, (numHorizontalLines - 2) * grid_size);
       } else if ( x == grid_size * 2 ) {
         line(x, 0, x, (Math.floor(windowHeight / grid_size) - 1) * grid_size);
-        line(x, (Math.floor(windowHeight / grid_size) + 1) * grid_size, x, h);
+        line(x, (Math.floor(windowHeight / grid_size) + 1) * grid_size, x, dividerTop + grid_size * 3);
+        line(x, dividerTop + grid_size * 8, x, dividerTop + grid_size * 9);
+        line(x, dividerTop + grid_size * 14, x, dividerTop + grid_size * 15);
+        line(x, dividerTop + grid_size * 23, x, (numHorizontalLines - 2) * grid_size);
+      } else if ( x >= grid_size * 3 && x < windowWidth ) {
+        line(x, 0, x, dividerTop + grid_size * 3);
+        line(x, dividerTop + grid_size * 8, x, dividerTop + grid_size * 9);
+        line(x, dividerTop + grid_size * 14, x, dividerTop + grid_size * 15);
+        line(x, dividerTop + grid_size * 23, x, h);
       } else {
         line(x, 0, x, h);
       }
@@ -103,8 +115,16 @@ function draw()
         line(0, y, windowWidth, y);
       }
     } else if (responsiveMode == 0 ) {
-      if( y > Math.floor(windowHeight / grid_size) * grid_size - 1 && y < (Math.floor(windowHeight / grid_size) + 1) * grid_size - 1) {
+      if( (y > Math.floor(windowHeight / grid_size) * grid_size - 1 && y < (Math.floor(windowHeight / grid_size) + 1) * grid_size - 1) ||
+          (y > (numHorizontalLines - 2) * grid_size + 1))
+      {
         line(grid_size * 3, y, windowWidth, y);
+      } else if ( (y >= dividerTop + grid_size * 4 && y < dividerTop + grid_size * 8 ) ||
+                  (y >= dividerTop + grid_size * 10 && y < dividerTop + grid_size * 14) ||
+                  (y >= dividerTop + grid_size * 16 && y < dividerTop + grid_size * 20)
+                )
+      {
+        line(0, y, grid_size, y);
       } else {
         line(0, y, windowWidth, y);
       }
@@ -197,7 +217,11 @@ function scrollToAbout () {
 
 function windowResized() {
   grid_size = windowWidth / maxVerticalLines;
-  numHorizontalLines = 24 + Math.floor(windowHeight / grid_size);
+  if(responsiveMode == 1 ) {
+    numHorizontalLines = 24 + Math.floor(windowHeight / grid_size);
+  } else if (responsiveMode == 0) {
+    numHorizontalLines = 32 + Math.floor(windowHeight / grid_size);
+  }
   h = grid_size * numHorizontalLines;
   resizeCanvas(windowWidth, h);
   if( windowWidth <= mobileWidth ) {

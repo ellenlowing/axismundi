@@ -424,6 +424,16 @@ body.motion {
   height: 6.75vw;
 }
 
+#code-chunk,
+#design-chunk {
+  display: none;
+}
+
+#description-chunk,
+#title-chunk {
+  display: flex;
+}
+
 
 @media screen and (max-width: 480px) {
   html, body {
@@ -480,6 +490,10 @@ body.motion {
     height: 40vw;
   }
 
+  .space-sm-2-5 {
+    height: 50vw;
+  }
+
   .space-sm-3 {
     height: 60vw;
   }
@@ -496,7 +510,15 @@ body.motion {
     height: 120vw;
   }
 
+  .space-sm-10 {
+    height: 200vw;
+  }
+
   /*  Custom class styling  */
+
+  .about .title-view {
+    display: none;
+  }
 
   .copyright {
     font-size: 2.8vw;
@@ -541,15 +563,15 @@ body.motion {
   }
 
   .paragraph {
-    font-size: 3.2vw;  /* was font-size: 4.3vw */
+    font-size: 4.3vw;  /* was font-size: 4.3vw */
     letter-spacing: 0.24vw;
     line-height: 5.8vw;
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding-left: 4vw;
+    padding-right: 4vw;
   }
 
   .paragraph-offset {
-    padding-top: 0;
+    padding-top: 2vw;
   }
 
   .title {
@@ -575,18 +597,25 @@ body.motion {
     left: -0.3vw;
   }
 
+  .title-concept,
+  .title-code,
+  .title-design {
+    font-size: 18vw;
+    top: 6.8vw;
+  }
+
   .title-concept {
     left: -0.3vw;
-    letter-spacing: 0.01vw;
+    letter-spacing: -0.15vw;
   }
 
   .title-code {
     left: -0.3vw;
-    letter-spacing: -0.015vw;
+    letter-spacing: 0.266667vw;
   }
 
   .title-design {
-    letter-spacing: -0.06vw;
+    letter-spacing: 0.0266667vw;
   }
 
   /* Custom elements styling */
@@ -607,5 +636,15 @@ body.motion {
 
   #ny {
     padding-left: 1.9vw;
+  }
+
+  #code-chunk,
+  #design-chunk {
+    display: flex;
+  }
+
+  #description-chunk,
+  #title-chunk {
+    display: none;
   }
 }
