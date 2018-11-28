@@ -506,15 +506,10 @@ body.motion {
   }
 
   .home-btn {
-    background-color: #A6C48A;
-    border-radius: 50%;
-    box-shadow: 1px 1px 4px 0 rgba(88,88,88,0.52);
-    position: absolute;
-    left: 2.8vw;
-    top: 2.5vw;
-    width: 4.444444vw;
-    height:4.444444vw;
-    z-index: 2;
+    left: 3.7vw;
+    top: 16vw;
+    width: 12.266667vw;
+    height:12.266667vw;
   }
 
   .fluid .title-fluid {
@@ -523,7 +518,7 @@ body.motion {
   }
 
   .footer-paragraph.footer-offset {
-    top: 1vw;
+    top: 0.7vw;
     left: -0.5vw;
   }
 

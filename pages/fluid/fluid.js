@@ -51,8 +51,13 @@ function setup() {
                       color(220, 151, 137)];
   colorIndex = random(5);
   color = secondaryColors[int(colorIndex)];
-  colorLimX = windowWidth / grid_size / 2;
-  colorLimY = windowHeight / grid_size / 2;
+  if(responsiveMode == 1) {
+    colorLimX = windowWidth / grid_size / 2;
+    colorLimY = windowHeight / grid_size / 2;
+  } else if (responsiveMode == 0) {
+    colorLimX = windowWidth / grid_size;
+    colorLimY = windowHeight / grid_size;
+  }
   strokeWeight(0.8);
   background(bgMode);
   stroke(strokeMode);
@@ -64,11 +69,11 @@ function draw() {
 
   // draw vertical lines
   for(var x = grid_size; x < windowWidth; x+=grid_size) {
+    var dist = abs(x - mouseX) / grid_size;
+    var alpha = dist / colorLimX * (-255) + 255;
+    if(dist < colorLimX) stroke(red(color), green(color), blue(color), alpha);
+    else stroke(200);
     if( responsiveMode == 1 ) {
-      var dist = abs(x - mouseX) / grid_size;
-      var alpha = dist / colorLimX * (-255) + 255;
-      if(dist < colorLimX) stroke(red(color), green(color), blue(color), alpha);
-      else stroke(200);
       if (x > grid_size * 9 + 1 && x < grid_size * 14 - 1) {
         line(x, 0, x, grid_size);
         if(x > grid_size * 11 - 1 && x < grid_size * 14 - 1) line(x, 14.5 * grid_size, x, grid_size * 15);
@@ -81,7 +86,19 @@ function draw() {
       }
     }
     else if (responsiveMode == 0) {
-      line(x, 0, x, h);
+      if(x == grid_size * 2) {
+        line(x, 0, x, grid_size * 2);
+        line(x, grid_size * 10.5, x, grid_size * 11);
+        line(x, grid_size * 19, x, h - grid_size * 2);
+      } else if (x == grid_size) {
+        line(x, 0, x, h - grid_size * 2);
+      } else if (x >= grid_size * 3 && x < windowWidth) {
+        line(x, 0, x, grid_size * 2);
+        line(x, grid_size * 10.5, x, grid_size * 11);
+        line(x, grid_size * 19, x, h);
+      } else {
+        line(x, 0, x, h);
+      }
     }
   }
 
@@ -101,7 +118,13 @@ function draw() {
       }
     }
     else if (responsiveMode == 0) {
-      line(0, y, windowWidth, y);
+      if(y > grid_size * 2 && y <= grid_size * 7) {
+        line(0, y, grid_size, y);
+      } else if ( y > (h - grid_size) - 1) {
+        line(grid_size * 3, y, windowWidth, y);
+      } else {
+        line(0, y, windowWidth, y);
+      }
     }
   }
 }
