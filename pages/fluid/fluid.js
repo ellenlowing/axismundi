@@ -1,7 +1,7 @@
 var canvas;
 var grid_size;
 var maxVerticalLines;
-var numHorizontalLines = 36;
+var numHorizontalLines;
 var bgMode;
 var strokeMode;
 var bgChanged;
@@ -20,9 +20,11 @@ function setup() {
   if( windowWidth <= minWidth ) {
     responsiveMode = 0;
     maxVerticalLines = 5;
+    numHorizontalLines = 27;
   } else {
     responsiveMode = 1;
     maxVerticalLines = 15;
+    numHorizontalLines = 36;
   }
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * numHorizontalLines;
@@ -59,6 +61,8 @@ function setup() {
 function draw() {
   background(bgMode);
   // stroke(strokeMode);
+
+  // draw vertical lines
   for(var x = grid_size; x < windowWidth; x+=grid_size) {
     if( responsiveMode == 1 ) {
       var dist = abs(x - mouseX) / grid_size;
@@ -76,17 +80,13 @@ function draw() {
         line(x, 0, x, h);
       }
     }
-    // else if (responsiveMode == 0) {
-    //   if (x >= grid_size && x <= grid_size * 2) {
-    //     var numHorizontalLines = Math.floor(h / grid_size);
-    //     var blockTop = (numHorizontalLines - 1) * grid_size;
-    //     line(x, 0, x, blockTop);
-    //     line(x, blockTop + 2 * grid_size, x, h);
-    //   } else {
-    //     line(x, 0, x, h);
-    //   }
-    // }
+    else if (responsiveMode == 0) {
+      line(x, 0, x, h);
+    }
   }
+
+
+  // draw horiziontal lines
   for(var y = grid_size; y < h; y+=grid_size) {
     if(responsiveMode == 1) {
       var dist = abs(y - mouseY) / grid_size;
@@ -100,13 +100,9 @@ function draw() {
         line(0, y, windowWidth, y);
       }
     }
-    // else if (responsiveMode == 0) {
-    //   if( y >= h - grid_size ) {
-    //     line(grid_size * 3 , y, windowWidth, y);
-    //   } else {
-    //     line(0, y, windowWidth, y);
-    //   }
-    // }
+    else if (responsiveMode == 0) {
+      line(0, y, windowWidth, y);
+    }
   }
 }
 
@@ -137,9 +133,11 @@ function windowResized() {
   if( windowWidth <= minWidth ) {
     responsiveMode = 0;
     maxVerticalLines = 5;
+    numHorizontalLines = 27;
   } else {
     responsiveMode = 1;
     maxVerticalLines = 15;
+    numHorizontalLines = 36;
   }
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * numHorizontalLines;

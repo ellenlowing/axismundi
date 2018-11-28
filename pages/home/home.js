@@ -7,11 +7,11 @@ var bgMode;
 var strokeMode;
 var bgChanged;
 var responsiveMode; // 0: small, 1: large
-var minWidth = 480;
+var mobileWidth = 480; // mobile size
 
 function setup()
 {
-  if( windowWidth <= minWidth ) {
+  if( windowWidth <= mobileWidth ) {
     responsiveMode = 0;
     maxVerticalLines = 5;
   } else {
@@ -43,7 +43,8 @@ function setup()
   strokeWeight(0.5);
   background(bgMode);
   stroke(strokeMode);
-  $('#space-between-title-and-copyright').addClass('space-' + (Math.floor(windowHeight / grid_size) - 5));
+  if(responsiveMode == 1) $('#space-between-title-and-copyright').addClass('space-' + (Math.floor(windowHeight / grid_size) - 5));
+  else if (responsiveMode == 0 ) $('#space-between-title-and-copyright').addClass('space-sm-' + (Math.floor(windowHeight / grid_size) - 5));
 }
 
 function draw()
@@ -75,13 +76,22 @@ function draw()
       } else {
         line(x, 0, x, h);
       }
+    } else if ( responsiveMode == 0 ) {
+      if( x == grid_size * 1) {
+        line(x, 0, x, (Math.floor(windowHeight / grid_size) - 1) * grid_size);
+        line(x, (Math.floor(windowHeight / grid_size) + 1) * grid_size, x, h);
+      } else if ( x == grid_size * 2 ) {
+        line(x, 0, x, (Math.floor(windowHeight / grid_size) - 1) * grid_size);
+        line(x, (Math.floor(windowHeight / grid_size) + 1) * grid_size, x, h);
+      } else {
+        line(x, 0, x, h);
+      }
     }
   }
 
   // draw horizontal lines
   for(var y = grid_size; y < h; y+=grid_size) {
     if(responsiveMode == 1) {
-      // line(0, y, windowWidth, y);
       if(y > dividerTop + grid_size * 2 + 1 && y < dividerTop + grid_size * 7) {
         line(0, y, grid_size * 9, y);
         line(grid_size * 14, y, grid_size * 15, y);
@@ -89,6 +99,12 @@ function draw()
         line(0, y, grid_size * 2, y);
         line(grid_size * 7, y, grid_size * 9, y);
         line(grid_size * 14, y, grid_size * 15, y);
+      } else {
+        line(0, y, windowWidth, y);
+      }
+    } else if (responsiveMode == 0 ) {
+      if( y > Math.floor(windowHeight / grid_size) * grid_size - 1 && y < (Math.floor(windowHeight / grid_size) + 1) * grid_size - 1) {
+        line(grid_size * 3, y, windowWidth, y);
       } else {
         line(0, y, windowWidth, y);
       }
@@ -107,13 +123,20 @@ function onHoverFluid() {
   // TO ADD: ratio to place img-fluid based on width
   if(windowWidth > 1175) {
     $('#img-fluid').css('left', '66.666667vw');
+  } else if (windowWidth <= 480) {
+    $('#img-fluid').css('left', '40vw');
   } else if (windowWidth < 940) {
     $('#img-fluid').css('left', '53.333333vw');
   } else {
     $('#img-fluid').css('left', '60vw');
   }
 
-  $('#img-fluid').css('height', Math.floor(windowHeight / grid_size) *grid_size + 'px').removeClass('hide').addClass('show');
+  if( windowWidth <= 480 ) {
+    $('#img-fluid').css('height', grid_size * 4 + 'px');
+  } else {
+    $('#img-fluid').css('height', Math.floor(windowHeight / grid_size) *grid_size + 'px');
+  }
+  $('#img-fluid').removeClass('hide').addClass('show');
 }
 
 function onHoverMotion() {
@@ -127,9 +150,11 @@ function onHoverMotion() {
                             'webkit-text-stroke': '#FFF 0.5px'
                         });
 
-  // TO ADD: ratio to place img-motion based on width           
+  // TO ADD: ratio to place img-motion based on width
   if(windowWidth > 1106) {
     $('#img-motion').css('width', ( grid_size * 9 ) + 'px');
+  } else if (windowWidth <= 480) {
+    $('#img-motion').css('height', ( grid_size * 3 ) + 'px');
   } else {
     $('#img-motion').css('height', (windowHeight - grid_size * 3) + 'px');
   }
@@ -137,7 +162,6 @@ function onHoverMotion() {
 
   $('.text').css('color', '#FFF');
   $('.about .title').not('.title-motion').css('color', '#FFF');
-  $('.white-space').css('color', '#FFF');
 }
 
 function onLeaveFluid() {
@@ -161,7 +185,6 @@ function onLeaveMotion() {
   $('#img-motion').removeClass('show').addClass('hide');
   $('.text').css('color', '#000');
   $('.about .title').not('.title-motion').css('color', '#000');
-  $('.white-space').css('color', '#000');
 }
 
 function scrollToHome () {
@@ -177,14 +200,18 @@ function windowResized() {
   numHorizontalLines = 24 + Math.floor(windowHeight / grid_size);
   h = grid_size * numHorizontalLines;
   resizeCanvas(windowWidth, h);
-  if( windowWidth <= minWidth ) {
+  if( windowWidth <= mobileWidth ) {
     responsiveMode = 0;
     maxVerticalLines = 5;
   } else {
     responsiveMode = 1;
     maxVerticalLines = 15;
   }
-  $('#space-between-title-and-copyright').removeClass( (index, className) => {
+  if(responsiveMode == 1) $('#space-between-title-and-copyright').removeClass( (index, className) => {
     return (className.match (/(^|\s)space-\S+/g) || []).join(' ');
   }).addClass('space-' + (Math.floor(windowHeight / grid_size) - 5));
+  else if (responsiveMode == 0 ) $('#space-between-title-and-copyright').removeClass( (index, className) => {
+    return (className.match (/(^|\s)space-sm-\S+/g) || []).join(' ');
+  }).addClass('space-sm-' + (Math.floor(windowHeight / grid_size) - 5));
+
 }
