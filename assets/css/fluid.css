@@ -512,7 +512,8 @@ body.motion {
     height:12.266667vw;
   }
 
-  .fluid .title-fluid {
+  .fluid .title-fluid,
+  .motion .title-motion {
     font-size: 18vw;
     top: 7vw;
   }

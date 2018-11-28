@@ -157,10 +157,14 @@ function windowResized() {
     responsiveMode = 0;
     maxVerticalLines = 5;
     numHorizontalLines = 27;
+    colorLimX = windowWidth / grid_size;
+    colorLimY = windowHeight / grid_size;
   } else {
     responsiveMode = 1;
     maxVerticalLines = 15;
     numHorizontalLines = 36;
+    colorLimX = windowWidth / grid_size / 2;
+    colorLimY = windowHeight / grid_size / 2;
   }
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * numHorizontalLines;
