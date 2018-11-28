@@ -89,13 +89,13 @@ function draw() {
       if(x == grid_size * 2) {
         line(x, 0, x, grid_size * 2);
         line(x, grid_size * 10.5, x, grid_size * 11);
-        line(x, grid_size * 19, x, h - grid_size * 2);
+        line(x, grid_size * 20, x, h - grid_size * 2);
       } else if (x == grid_size) {
         line(x, 0, x, h - grid_size * 2);
       } else if (x >= grid_size * 3 && x < windowWidth) {
         line(x, 0, x, grid_size * 2);
         line(x, grid_size * 10.5, x, grid_size * 11);
-        line(x, grid_size * 19, x, h);
+        line(x, grid_size * 20, x, h);
       } else {
         line(x, 0, x, h);
       }

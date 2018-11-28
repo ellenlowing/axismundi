@@ -102,13 +102,13 @@ function draw() {
       if(x == grid_size * 2) {
         line(x, 0, x, grid_size * 2);
         line(x, grid_size * 10.5, x, grid_size * 11);
-        line(x, grid_size * 19, x, h - grid_size * 2);
+        line(x, grid_size * 20, x, h - grid_size * 2);
       } else if (x == grid_size) {
         line(x, 0, x, h - grid_size * 2);
       } else if (x >= grid_size * 3 && x < windowWidth) {
         line(x, 0, x, grid_size * 2);
         line(x, grid_size * 10.5, x, grid_size * 11);
-        line(x, grid_size * 19, x, h);
+        line(x, grid_size * 20, x, h);
       } else {
         line(x, 0, x, h);
       }
@@ -139,7 +139,7 @@ function draw() {
     // avoid blank spaces
     if( ( responsiveMode == 1 && ( (left >= grid_size * 9 && right <= grid_size * 15 && top >= grid_size && bottom <= grid_size * (numHorizontalLines - 2)) ||
         (left >= 0 && right <= grid_size * 5 && top >= (numHorizontalLines-1) * grid_size) ) )  ||
-        ( responsiveMode == 0 && ((left >= grid_size && right < windowWidth + 10 && top >= grid_size * 2 && bottom <= grid_size * 20) || left >= 0 && right <= grid_size * 3 + 10 && top >= (numHorizontalLines - 2) * grid_size))
+        ( responsiveMode == 0 && ((left >= grid_size && right < windowWidth + 10 && top >= grid_size * 2 && bottom <= grid_size * 21) || left >= 0 && right <= grid_size * 3 + 10 && top >= (numHorizontalLines - 2) * grid_size))
       )
       return;
 
