@@ -478,6 +478,10 @@ body.motion {
     max-width: 100vw;
   }
 
+  .space-sm-0 {
+    height: 0vw;
+  }
+
   .space-sm-half {
     height: 10vw;
   }

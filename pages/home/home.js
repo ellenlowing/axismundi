@@ -143,7 +143,7 @@ function onHoverFluid() {
   // TO ADD: ratio to place img-fluid based on width
   if(windowWidth > 1175) {
     $('#img-fluid').css('left', '66.666667vw');
-  } else if (windowWidth <= 480) {
+  } else if (windowWidth <= mobileWidth) {
     $('#img-fluid').css('left', '40vw');
   } else if (windowWidth < 940) {
     $('#img-fluid').css('left', '53.333333vw');
@@ -151,7 +151,7 @@ function onHoverFluid() {
     $('#img-fluid').css('left', '60vw');
   }
 
-  if( windowWidth <= 480 ) {
+  if( windowWidth <= mobileWidth ) {
     $('#img-fluid').css('height', grid_size * 4 + 'px');
   } else {
     $('#img-fluid').css('height', Math.floor(windowHeight / grid_size) *grid_size + 'px');
@@ -173,7 +173,7 @@ function onHoverMotion() {
   // TO ADD: ratio to place img-motion based on width
   if(windowWidth > 1106) {
     $('#img-motion').css('width', ( grid_size * 9 ) + 'px');
-  } else if (windowWidth <= 480) {
+  } else if (windowWidth <= mobileWidth) {
     $('#img-motion').css('height', ( grid_size * 3 ) + 'px');
   } else {
     $('#img-motion').css('height', (windowHeight - grid_size * 3) + 'px');
