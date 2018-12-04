@@ -16,6 +16,10 @@ var mouseMovedCounter, mouseMovedFlag, maxMouseMovedCounter;
 var xOffset, yOffset, maxOffset, offset;
 var prevTop, prevBottom, prevLeft, prevRight;
 
+$(window).load(function() {
+  $('#hide-all').css('display', 'block');
+});
+
 function setup() {
   if( windowWidth <= minWidth ) {
     responsiveMode = 0;
@@ -41,6 +45,7 @@ function setup() {
     });
   });
   $('.title-fluid').bind('mouseover', onHoverFluid).bind('mouseout', onLeaveFluid);
+  // document.getElementById('vid').onclick = () => { document.getElementById('vid').play(); }
   bgMode = 0;
   strokeMode = 255;
   bgChanged = false;
