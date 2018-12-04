@@ -16,6 +16,10 @@ var color, colorIndex;
 var colorLimX, colorLimY;
 var secondaryColors;
 
+$(window).load(function() {
+  $('#hide-all').css('display', 'block');
+});
+
 function setup() {
   if( windowWidth <= minWidth ) {
     responsiveMode = 0;
