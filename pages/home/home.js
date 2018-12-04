@@ -108,7 +108,7 @@ function draw()
   // draw horizontal lines
   for(var y = grid_size; y < h; y+=grid_size) {
     if(responsiveMode == 1) {
-      if(y > dividerTop + grid_size * 2 + 1 && y < dividerTop + grid_size * 7) {
+      if(y > dividerTop + grid_size * 2 + 1 && y < dividerTop + grid_size * 7 - 1) {
         line(0, y, grid_size * 9, y);
         line(grid_size * 14, y, grid_size * 15, y);
       } else if (y > dividerTop + grid_size * 8 + 1 && y < dividerTop + grid_size * 13) {
