@@ -235,10 +235,10 @@ function windowResized() {
     responsiveMode = 1;
     maxVerticalLines = 15;
   }
-  if(responsiveMode == 1) $('#space-between-title-and-copyright').removeClass( (index, className) => {
+  if(responsiveMode == 1) $('#space-between-title-and-copyright').removeClass( function (index, className) {
     return (className.match (/(^|\s)space-\S+/g) || []).join(' ');
   }).addClass('space-' + (Math.floor(windowHeight / grid_size) - 5));
-  else if (responsiveMode == 0 ) $('#space-between-title-and-copyright').removeClass( (index, className) => {
+  else if (responsiveMode == 0 ) $('#space-between-title-and-copyright').removeClass( function (index, className) {
     return (className.match (/(^|\s)space-sm-\S+/g) || []).join(' ');
   }).addClass('space-sm-' + (Math.floor(windowHeight / grid_size) - 5));
 
