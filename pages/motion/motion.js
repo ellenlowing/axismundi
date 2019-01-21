@@ -46,7 +46,7 @@ function setup() {
   });
   $('.title-fluid').bind('mouseover', onHoverFluid).bind('mouseout', onLeaveFluid);
   // document.getElementById('vid').onclick = () => { document.getElementById('vid').play(); }
-  bgMode = 0;
+  bgMode = 49;
   strokeMode = 255;
   bgChanged = false;
   mouseMovedFlag = 0;
@@ -198,7 +198,7 @@ function onHoverFluid() {
 }
 
 function onLeaveFluid() {
-  bgMode = 0;
+  bgMode = 49;
   strokeMode = 255;
   $('.title-fluid').css('-webkit-text-stroke', '0px');
   $('.text').css('color', "#FFF");

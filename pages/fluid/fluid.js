@@ -75,7 +75,7 @@ function draw() {
   for(var x = grid_size; x < windowWidth; x+=grid_size) {
     var dist = abs(x - mouseX) / grid_size;
     var alpha = dist / colorLimX * (-255) + 255;
-    if(dist < colorLimX) stroke(red(color), green(color), blue(color), alpha);
+    if(dist < colorLimX - 1) stroke(red(color), green(color), blue(color), alpha);
     else stroke(200);
     if( responsiveMode == 1 ) {
       if (x > grid_size * 9 + 1 && x < grid_size * 14 - 1) {
@@ -112,7 +112,7 @@ function draw() {
     if(responsiveMode == 1) {
       var dist = abs(y - mouseY) / grid_size;
       var alpha = dist / colorLimY * (-255) + 255;
-      if(dist < colorLimY) stroke(red(color), green(color), blue(color), alpha);
+      if(dist < colorLimY - 1) stroke(red(color), green(color), blue(color), alpha);
       else stroke(200);
       if( (y > grid_size && y <= grid_size * 5) || (y >= grid_size * 19 + 1 && y <= grid_size * 21 - 1) || (y >= grid_size * 25 + 1 && y <= grid_size * 27 - 1) || (y >= grid_size * 31 + 1 && y <= grid_size * 33 - 1) ) {
         line(0, y, grid_size * 9, y);
@@ -134,10 +134,10 @@ function draw() {
 }
 
 function onHoverMotion() {
-  bgMode = 0;
+  bgMode = 49;
   strokeMode = 255;
   $('.title-motion').css( {
-                            'color': '#000',
+                            'color': '#313131',
                             '-webkit-text-stroke': ' #FFF 0.5px'
                           } );
   $('.text').css('color', '#FFF');
