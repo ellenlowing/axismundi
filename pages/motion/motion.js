@@ -45,7 +45,7 @@ function setup() {
     });
   });
   $('.title-fluid').bind('mouseover', onHoverFluid).bind('mouseout', onLeaveFluid);
-  // document.getElementById('vid').onclick = () => { document.getElementById('vid').play(); }
+  document.getElementById('vid').onclick = () => { document.getElementById('vid').play(); console.log('click'); }
   bgMode = 49;
   strokeMode = 255;
   bgChanged = false;

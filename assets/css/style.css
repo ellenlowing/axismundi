@@ -277,14 +277,14 @@ div.home {
   cursor: url('../../assets/img/arrow-cursor.png'), auto;
 }
 
-div.about,
+/* div.about,
 div.fluid {
   cursor: url('../../assets/img/circle-cursor.png'), auto;
 }
 
 div.motion {
   cursor: url('../../assets/img/white-circle-cursor.png'), auto;
-}
+} */
 
 .caption {
   font-size: 1.35vw;
@@ -315,8 +315,8 @@ div.motion {
   border-radius: 50%;
   box-shadow: 1px 1px 4px 0 rgba(88,88,88,0.52);
   position: fixed;
-  left: 2.8vw;
-  top: 2.5vw;
+  left: 20px;
+  top: 20px;
   width: 4.444444vw;
   height:4.444444vw;
   z-index: 2;
@@ -557,8 +557,10 @@ div.motion {
   }
 
   .home-btn {
-    left: 3.7vw;
-    top: 16vw;
+    /* left: 3.7vw;
+    top: 16vw; */
+    left: 20px;
+    top: 20px;
     width: 12.266667vw;
     height:12.266667vw;
   }
