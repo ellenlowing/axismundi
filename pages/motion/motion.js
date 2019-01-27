@@ -83,12 +83,12 @@ function setup() {
       console.log('vid wrapper click');
     });
     document.getElementById('vid-wrapper').addEventListener('touchstart', function() {
-      if(vidPlaying) {
-        vid.pause();
-      } else {
-        vid.play();
-        $('#vid-placeholder').css('z-index', '-1');
-      }
+      // if(vidPlaying) {
+      //   vid.pause();
+      // } else {
+      //   vid.play();
+      //   $('#vid-placeholder').css('z-index', '-1');
+      // }
       console.log('vid wrapper touch');
     });
   } else {
