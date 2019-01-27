@@ -53,36 +53,61 @@ function setup() {
 
   // handles start and end of video
   var vid = document.getElementById('vid');
-  vid.addEventListener('playing', function() {
-    $('#play-btn').css('visibility', 'hidden');
-    vidPlaying = true;
-  });
-  vid.addEventListener('pause', function() {
-    $('#pause-btn').css('visibility', 'hidden');
-    vidPlaying = false;
-  });
-  vid.addEventListener('ended', function() {
-    $('#vid-placeholder').css('z-index', '2');
-    $('#play-btn').css('visibility', 'visible');
-  });
-  $('#play-btn').click(function() {
-    vid.play();
-    $('#vid-placeholder').css('z-index', '-1');
-  });
-  $('#pause-btn').click(function() {
-    vid.pause();
-  });
-  $('#vid-wrapper').bind('mouseover', () => {
-    if(vidPlaying) {
-      $('#pause-btn').css('visibility', 'visible');
-    } else {
+
+  if(isMobile()) {
+    vid.addEventListener('playing', function() {
+      $('#play-btn').css('visibility', 'hidden');
+      vidPlaying = true;
+    });
+    vid.addEventListener('pause', function() {
+      $('#pause-btn').css('visibility', 'hidden');
       $('#play-btn').css('visibility', 'visible');
-    }
-  });
-  $('#vid-wrapper').bind('mouseout', () => {
-    $('#pause-btn').css('visibility', 'hidden');
-    $('#play-btn').css('visibility', 'hidden');
-  });
+      vidPlaying = false;
+    });
+    vid.addEventListener('ended', function() {
+      $('#vid-placeholder').css('z-index', '2');
+      $('#play-btn').css('visibility', 'visible');
+    });
+    $('#vid-wrapper').click(function() {
+      if(vidPlaying) {
+        vid.pause();
+      } else {
+        vid.play();
+        $('#vid-placeholder').css('z-index', '-1');
+      }
+    });
+  } else {
+    vid.addEventListener('playing', function() {
+      $('#play-btn').css('visibility', 'hidden');
+      vidPlaying = true;
+    });
+    vid.addEventListener('pause', function() {
+      $('#pause-btn').css('visibility', 'hidden');
+      vidPlaying = false;
+    });
+    vid.addEventListener('ended', function() {
+      $('#vid-placeholder').css('z-index', '2');
+      $('#play-btn').css('visibility', 'visible');
+    });
+    $('#play-btn').click(function() {
+      vid.play();
+      $('#vid-placeholder').css('z-index', '-1');
+    });
+    $('#pause-btn').click(function() {
+      vid.pause();
+    });
+    $('#vid-wrapper').bind('mouseover', () => {
+      if(vidPlaying) {
+        $('#pause-btn').css('visibility', 'visible');
+      } else {
+        $('#play-btn').css('visibility', 'visible');
+      }
+    });
+    $('#vid-wrapper').bind('mouseout', () => {
+      $('#pause-btn').css('visibility', 'hidden');
+      $('#play-btn').css('visibility', 'hidden');
+    });
+  }
 
   bgMode = 255;
   strokeMode = 0;
