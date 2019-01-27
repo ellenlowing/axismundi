@@ -49,7 +49,15 @@ function setup() {
     $(this).attr('src', $(this).attr('data-src'));
   });
   $('.title-fluid').bind('mouseover', onHoverFluid).bind('mouseout', onLeaveFluid);
-  document.getElementById('vid').onclick = () => { document.getElementById('vid').play(); console.log('click'); }
+  $('#play-btn').click(function() {
+    $('#vid').get(0).play();
+    $('#vid-placeholder').css('z-index', '-1');
+    $('#play-btn').css('visibility', 'hidden');
+    $('#vid').get(0).onended = function() {
+      $('#vid-placeholder').css('z-index', '2');
+      $('#play-btn').css('visibility', 'visible');
+    }
+  });
   bgMode = 49;
   strokeMode = 255;
   bgChanged = false;
@@ -99,8 +107,7 @@ function draw() {
     if( responsiveMode == 1 ) {
       if (x > grid_size * 9 + 1 && x < grid_size * 14 - 1) {
         line(x, 0, x, grid_size);
-        if(x > grid_size * 11 - 1 && x < grid_size * 14 - 1) line(x, 14.5 * grid_size, x, grid_size * 15);
-        else line( x, 14 * grid_size, x, 15* grid_size);
+        line( x, 14 * grid_size, x, 15* grid_size);
         line(x, grid_size * 33, x, h);
       } else if (x >= grid_size && x <= grid_size * 3) {
         line(x, 0, x, h - grid_size);
@@ -110,13 +117,13 @@ function draw() {
     } else if (responsiveMode == 0) {
       if(x == grid_size * 2) {
         line(x, 0, x, grid_size * 2);
-        line(x, grid_size * 10.5, x, grid_size * 11);
+        line(x, grid_size * 10, x, grid_size * 11);
         line(x, grid_size * 20, x, h - grid_size * 2);
       } else if (x == grid_size) {
         line(x, 0, x, h - grid_size * 2);
       } else if (x >= grid_size * 3 && x < windowWidth) {
         line(x, 0, x, grid_size * 2);
-        line(x, grid_size * 10.5, x, grid_size * 11);
+        line(x, grid_size * 10, x, grid_size * 11);
         line(x, grid_size * 20, x, h);
       } else {
         line(x, 0, x, h);

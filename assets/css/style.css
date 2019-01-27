@@ -1,6 +1,8 @@
 @font-face {
     font-family: FoundersGrotesk-Light;
-    src: url('../font/FoundersGrotesk-Light.otf') format("opentype");
+    src: url('../font/FoundersGroteskWeb-Light.eot');
+    src: url('FoundersGroteskWeb-Light.woff2') format('woff2'),
+          url('FoundersGroteskWeb-Light.woff') format('woff');
 }
 
 html, body {
@@ -444,6 +446,30 @@ div.motion {
   display: none;
 }
 
+#play-btn {
+  cursor: grab;
+  height: 18vw;
+  left: calc(50% - 9vw);
+  position: absolute;
+  top: calc(50% - 9vw);
+  width: 18vw;
+  z-index: 3;
+}
+
+#vid-lg {
+  display: none;
+}
+
+#vid-sm {
+  display: none;
+}
+
+#vid-placeholder {
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
 
 @media screen and (max-width: 600px) {
 
