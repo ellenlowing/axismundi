@@ -113,6 +113,7 @@ function setup()
         $('.about .title').not('.title-motion').css('color', '#FFF');
       });
     } else {
+      $('#down-arrow').css('display', 'none');
       $('.title-motion').bind('mouseover', onHoverMotion).bind('mouseout', onLeaveMotion);
       $('.title-fluid').bind('mouseover', onHoverFluid).bind('mouseout', onLeaveFluid);
     }
@@ -326,6 +327,8 @@ function windowResized() {
 
   if(isMobile()) {
     $('#down-arrow').css('top', ( $('#space-between-title-and-copyright').offset().top + grid_size * (Math.floor(windowHeight / grid_size) - 5) + 20 ) + 'px');
+  } else {
+    $('#down-arrow').css('display', 'none');
   }
 }
 
