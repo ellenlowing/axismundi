@@ -68,7 +68,7 @@ function setup() {
       $('#vid-placeholder').css('z-index', '2');
       $('#play-btn').css('visibility', 'visible');
     });
-    $('#vid-wrapper').click(function () {
+    document.getElementById('vid-wrapper').addEventListener('touchstart', function() {
       if(vidPlaying) {
         vid.pause();
       } else {
