@@ -423,6 +423,10 @@ div.motion {
   line-height: 1.9vw;
 } */
 
+#down-arrow {
+  display: none;
+}
+
 #img-fluid {
   top: 0px;
   left: 60vw;
