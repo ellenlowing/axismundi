@@ -5,6 +5,7 @@ var numHorizontalLines;
 var bgMode;
 var strokeMode;
 var bgChanged;
+var vidPlaying = false;
 
 // 0: small, 1: large
 var responsiveMode;
@@ -49,16 +50,40 @@ function setup() {
     $(this).attr('src', $(this).attr('data-src'));
   });
   $('.title-fluid').bind('mouseover', onHoverFluid).bind('mouseout', onLeaveFluid);
+
+  // handles start and pause events
+  var vid = document.getElementById('vid');
+  vid.addEventListener('playing', function() {
+    $('#play-btn').css('visibility', 'hidden');
+    vidPlaying = true;
+  });
+  vid.addEventListener('pause', function() {
+    $('#pause-btn').css('visibility', 'hidden');
+    vidPlaying = false;
+  });
+  vid.addEventListener('ended', function() {
+    $('#vid-placeholder').css('z-index', '2');
+    $('#play-btn').css('visibility', 'visible');
+  });
   $('#play-btn').click(function() {
-    var vid = document.getElementById('vid');
     vid.play();
     $('#vid-placeholder').css('z-index', '-1');
-    $('#play-btn').css('visibility', 'hidden');
-    vid.onended = function() {
-      $('#vid-placeholder').css('z-index', '2');
+  });
+  $('#pause-btn').click(function() {
+    vid.pause();
+  });
+  $('#vid-wrapper').bind('mouseover', () => {
+    if(vidPlaying) {
+      $('#pause-btn').css('visibility', 'visible');
+    } else {
       $('#play-btn').css('visibility', 'visible');
     }
   });
+  $('#vid-wrapper').bind('mouseout', () => {
+    $('#pause-btn').css('visibility', 'hidden');
+    $('#play-btn').css('visibility', 'hidden');
+  });
+
   bgMode = 49;
   strokeMode = 255;
   bgChanged = false;
@@ -232,4 +257,12 @@ function windowResized() {
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * numHorizontalLines;
   resizeCanvas(windowWidth, h);
+}
+
+function vidOnPlay() {
+  $('#pause-btn').css('visibility', 'visible');
+  $('#pause-btn').click(function() {
+    var vid = document.getElementById('vid');
+    vid.pause();
+  });
 }
