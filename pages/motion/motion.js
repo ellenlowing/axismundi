@@ -44,6 +44,10 @@ function setup() {
       }
     });
   });
+  var gifs = $('.gif');
+  gifs.each(function(index) {
+    $(this).attr('src', $(this).attr('data-src'));
+  });
   $('.title-fluid').bind('mouseover', onHoverFluid).bind('mouseout', onLeaveFluid);
   document.getElementById('vid').onclick = () => { document.getElementById('vid').play(); console.log('click'); }
   bgMode = 49;

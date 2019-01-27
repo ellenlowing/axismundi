@@ -44,6 +44,10 @@ function setup() {
       }
     });
   });
+  var gifs = $('.gif');
+  gifs.each(function(index) {
+    $(this).attr('src', $(this).attr('data-src'));
+  });
   $('.title-motion').bind('mouseover', onHoverMotion).bind('mouseout', onLeaveMotion);
   bgMode = 255;
   strokeMode = 0;
