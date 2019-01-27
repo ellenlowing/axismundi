@@ -72,6 +72,7 @@ function setup() {
     //   vid.play();
     //   $('#vid-placeholder').css('z-index', '-1');
     // });
+    console.log('mobile test');
     $('#vid-wrapper').click(function() {
       if(vidPlaying) {
         vid.pause();
@@ -80,6 +81,15 @@ function setup() {
         $('#vid-placeholder').css('z-index', '-1');
       }
       console.log('vid wrapper click');
+    });
+    document.getElementById('vid-wrapper').addEventListener('touchstart', function() {
+      if(vidPlaying) {
+        vid.pause();
+      } else {
+        vid.play();
+        $('#vid-placeholder').css('z-index', '-1');
+      }
+      console.log('vid wrapper touch');
     });
   } else {
     vid.addEventListener('playing', function() {
