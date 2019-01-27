@@ -70,11 +70,13 @@ function setup() {
     });
     $('#play-btn').click(function() {
       vid.play();
-      vidPlaying = true;
+      $('#vid-placeholder').css('z-index', '-1');
     });
     $('#vid-wrapper').click(function() {
       if(vidPlaying) {
         vid.pause();
+      } else {
+        vid.play();
       }
       console.log('vid wrapper click');
     });
@@ -93,7 +95,7 @@ function setup() {
     });
     $('#play-btn').click(function() {
       vid.play();
-      $('#vid-placeholder').css('z-index', '1');
+      $('#vid-placeholder').css('z-index', '-1');
     });
     $('#pause-btn').click(function() {
       vid.pause();
