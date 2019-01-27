@@ -14,11 +14,6 @@ html, body {
     display: none;
 }
 
-*::-webkit-media-controls-start-playback-button {
-  display: none!important;
-  -webkit-appearance: none;
-}
-
 a,
 a:link,
 a:visited,
@@ -486,12 +481,8 @@ div.motion {
   z-index: 3;
 }
 
-#vid-lg {
-  display: none;
-}
-
-#vid-sm {
-  display: none;
+#vid {
+  -webkit-appearance: none;
 }
 
 #vid-placeholder {
