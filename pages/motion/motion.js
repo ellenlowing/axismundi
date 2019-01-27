@@ -68,12 +68,13 @@ function setup() {
       $('#vid-placeholder').css('z-index', '2');
       $('#play-btn').css('visibility', 'visible');
     });
-    document.getElementById('vid-wrapper').addEventListener('touchstart', function() {
+    $('#play-btn').click(function() {
+      vid.play();
+      vidPlaying = true;
+    });
+    $('#vid-wrapper').click(function() {
       if(vidPlaying) {
         vid.pause();
-      } else {
-        vid.play();
-        $('#vid-placeholder').css('z-index', '1');
       }
       console.log('vid wrapper click');
     });
