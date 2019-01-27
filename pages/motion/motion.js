@@ -55,24 +55,23 @@ function setup() {
   var vid = document.getElementById('vid');
 
   if(isMobile()) {
-    // vid.addEventListener('playing', function() {
-    //   $('#play-btn').css('visibility', 'hidden');
-    //   vidPlaying = true;
-    // });
-    // vid.addEventListener('pause', function() {
-    //   $('#pause-btn').css('visibility', 'hidden');
-    //   $('#play-btn').css('visibility', 'visible');
-    //   vidPlaying = false;
-    // });
-    // vid.addEventListener('ended', function() {
-    //   $('#vid-placeholder').css('z-index', '2');
-    //   $('#play-btn').css('visibility', 'visible');
-    // });
+    vid.addEventListener('playing', function() {
+      $('#play-btn').css('visibility', 'hidden');
+      vidPlaying = true;
+    });
+    vid.addEventListener('pause', function() {
+      $('#pause-btn').css('visibility', 'hidden');
+      $('#play-btn').css('visibility', 'visible');
+      vidPlaying = false;
+    });
+    vid.addEventListener('ended', function() {
+      $('#vid-placeholder').css('z-index', '2');
+      $('#play-btn').css('visibility', 'visible');
+    });
     // $('#play-btn').click(function() {
     //   vid.play();
     //   $('#vid-placeholder').css('z-index', '-1');
     // });
-    console.log('mobile test');
     $('#vid-wrapper').click(function() {
       if(vidPlaying) {
         vid.pause();
