@@ -321,7 +321,7 @@ div.motion {
   top: 20px;
   width: 4.444444vw;
   height:4.444444vw;
-  z-index: 2;
+  z-index: 99;
 }
 
 .about .home-btn {
