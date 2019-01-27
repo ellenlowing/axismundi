@@ -68,24 +68,14 @@ function setup() {
       $('#vid-placeholder').css('z-index', '2');
       $('#play-btn').css('visibility', 'visible');
     });
-    $('#play-btn').click(function() {
-      vid.play();
-      $('#vid-placeholder').css('z-index', '-1');
+    $('#vid-wrapper').click(function () {
+      if(vidPlaying) {
+        vid.pause();
+      } else {
+        vid.play();
+        $('#vid-placeholder').css('z-index', '-1');
+      }
     });
-    $('#pause-btn').click(function() {
-      vid.pause();
-    });
-    // $('#vid-wrapper').bind('click', () => {
-    //   if(vidPlaying) {
-    //     $('#pause-btn').css('visibility', 'visible');
-    //   } else {
-    //     $('#play-btn').css('visibility', 'visible');
-    //   }
-    // });
-    // $('#vid-wrapper').bind('click', () => {
-    //   $('#pause-btn').css('visibility', 'hidden');
-    //   $('#play-btn').css('visibility', 'hidden');
-    // });
   } else {
     vid.addEventListener('playing', function() {
       $('#play-btn').css('visibility', 'hidden');
