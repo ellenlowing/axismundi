@@ -73,8 +73,9 @@ function setup() {
         vid.pause();
       } else {
         vid.play();
-        $('#vid-placeholder').css('z-index', '-1');
+        $('#vid-placeholder').css('z-index', '1');
       }
+      console.log('vid wrapper click');
     });
   } else {
     vid.addEventListener('playing', function() {
@@ -91,7 +92,7 @@ function setup() {
     });
     $('#play-btn').click(function() {
       vid.play();
-      $('#vid-placeholder').css('z-index', '-1');
+      $('#vid-placeholder').css('z-index', '1');
     });
     $('#pause-btn').click(function() {
       vid.pause();
