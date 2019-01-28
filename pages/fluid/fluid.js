@@ -55,6 +55,8 @@ function setup() {
   var vid = document.getElementById('vid');
 
   if(isMobile()) {
+    vid.setAttribute('src', '../../assets/vid/fluid-sm.mp4');
+    document.getElementById('vid-placeholder').setAttribute('src', '../../assets/img/vid-fluid-sm.png');
     vid.addEventListener('playing', function() {
       $('#play-btn').css('visibility', 'hidden');
       vidPlaying = true;
