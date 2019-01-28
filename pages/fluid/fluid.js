@@ -109,6 +109,25 @@ function setup() {
       $('#pause-btn').css('visibility', 'hidden');
       $('#play-btn').css('visibility', 'hidden');
     });
+    if(windowWidth <= minWidth) {
+      $('#vid').css({
+                        'height': '60vw',
+                        'width' : 'auto'
+                    });
+      $('#vid-placeholder').css({
+                                    'height': '60vw',
+                                    'width' : 'auto'
+                                });
+    } else {
+      $('#vid').css({
+                        'width': '93.3333vw',
+                        'height' : 'auto'
+                    });
+      $('#vid-placeholder').css({
+                                    'width': '93.3333vw',
+                                    'height' : 'auto'
+                                });
+    }
   }
 
   bgMode = 255;
@@ -239,6 +258,27 @@ function windowResized() {
   h = grid_size * numHorizontalLines;
   colorLimY = windowHeight / grid_size / 2;
   resizeCanvas(windowWidth, h);
+  if(!isMobile()) {
+    if(windowWidth <= minWidth) {
+      $('#vid').css({
+                        'height': '60vw',
+                        'width' : 'auto'
+                    });
+      $('#vid-placeholder').css({
+                                    'height': '60vw',
+                                    'width' : 'auto'
+                                });
+    } else {
+      $('#vid').css({
+                        'width': '93.3333vw',
+                        'height' : 'auto'
+                    });
+      $('#vid-placeholder').css({
+                                    'width': '93.3333vw',
+                                    'height' : 'auto'
+                                });
+    }
+  }
 }
 
 function isMobile() {
