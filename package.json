@@ -1,0 +1,30 @@
+{
+  "name": "microsite",
+  "version": "1.0.0",
+  "description": "Axis Mundi is a project exploring the attempt of replacing nature with technology and nature’s resistance.",
+  "main": "home.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ellenlowing/axismundi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ellenlowing/axismundi/issues"
+  },
+  "homepage": "https://github.com/ellenlowing/axismundi#readme",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-if": "^2.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1",
+    "merge-stream": "^1.0.1",
+    "run-sequence": "^2.2.1",
+    "uglify-es": "^3.3.9"
+  }
+}
