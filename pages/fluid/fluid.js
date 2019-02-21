@@ -26,12 +26,12 @@ function setup() {
     responsiveMode = 0;
     maxVerticalLines = 5;
     numHorizontalLines = 27;
-    $('#vid').attr('src', 'https://player.vimeo.com/video/318688782');
+    $('#vid').attr('src', 'https://player.vimeo.com/video/318688782?muted=1');
   } else {
     responsiveMode = 1;
     maxVerticalLines = 15;
     numHorizontalLines = 36;
-    $('#vid').attr('src', 'https://player.vimeo.com/video/318685714');
+    $('#vid').attr('src', 'https://player.vimeo.com/video/318685714?muted=1');
   }
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * numHorizontalLines;
@@ -249,14 +249,14 @@ function windowResized() {
     numHorizontalLines = 27;
     colorLimX = windowWidth / grid_size;
     colorLimY = windowHeight / grid_size;
-    $('#vid').attr('src', 'https://player.vimeo.com/video/318688782');
+    $('#vid').attr('src', 'https://player.vimeo.com/video/318688782?muted=1');
   } else {
     responsiveMode = 1;
     maxVerticalLines = 15;
     numHorizontalLines = 36;
     colorLimX = windowWidth / grid_size / 2;
     colorLimY = windowHeight / grid_size / 2;
-    $('#vid').attr('src', 'https://player.vimeo.com/video/318685714');
+    $('#vid').attr('src', 'https://player.vimeo.com/video/318685714?muted=1');
   }
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * numHorizontalLines;
