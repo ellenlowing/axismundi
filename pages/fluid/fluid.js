@@ -26,10 +26,12 @@ function setup() {
     responsiveMode = 0;
     maxVerticalLines = 5;
     numHorizontalLines = 27;
+    $('#vid').attr('src', 'https://player.vimeo.com/video/318688782');
   } else {
     responsiveMode = 1;
     maxVerticalLines = 15;
     numHorizontalLines = 36;
+    $('#vid').attr('src', 'https://player.vimeo.com/video/318685714');
   }
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * numHorizontalLines;
@@ -52,83 +54,83 @@ function setup() {
   $('.title-motion').bind('mouseover', onHoverMotion).bind('mouseout', onLeaveMotion);
 
   // handles start and end of video
-  var vid = document.getElementById('vid');
-
-  if(isMobile()) {
-    vid.setAttribute('src', '../../assets/vid/fluid-sm.mp4');
-    document.getElementById('vid-placeholder').setAttribute('src', '../../assets/img/vid-fluid-sm.png');
-    vid.addEventListener('playing', function() {
-      $('#play-btn').css('visibility', 'hidden');
-      vidPlaying = true;
-    });
-    vid.addEventListener('pause', function() {
-      $('#pause-btn').css('visibility', 'hidden');
-      $('#play-btn').css('visibility', 'visible');
-      vidPlaying = false;
-    });
-    vid.addEventListener('ended', function() {
-      $('#vid-placeholder').css('z-index', '2');
-      $('#play-btn').css('visibility', 'visible');
-    });
-    $('#vid-wrapper').click(function() {
-      if(vidPlaying) {
-        vid.pause();
-      } else {
-        vid.play();
-        $('#vid-placeholder').css('z-index', '-1');
-      }
-    });
-  } else {
-    vid.addEventListener('playing', function() {
-      $('#play-btn').css('visibility', 'hidden');
-      vidPlaying = true;
-    });
-    vid.addEventListener('pause', function() {
-      $('#pause-btn').css('visibility', 'hidden');
-      vidPlaying = false;
-    });
-    vid.addEventListener('ended', function() {
-      $('#vid-placeholder').css('z-index', '2');
-      $('#play-btn').css('visibility', 'visible');
-    });
-    $('#play-btn').click(function() {
-      vid.play();
-      $('#vid-placeholder').css('z-index', '-1');
-    });
-    $('#pause-btn').click(function() {
-      vid.pause();
-    });
-    $('#vid-wrapper').bind('mouseover', () => {
-      if(vidPlaying) {
-        $('#pause-btn').css('visibility', 'visible');
-      } else {
-        $('#play-btn').css('visibility', 'visible');
-      }
-    });
-    $('#vid-wrapper').bind('mouseout', () => {
-      $('#pause-btn').css('visibility', 'hidden');
-      $('#play-btn').css('visibility', 'hidden');
-    });
-    if(windowWidth <= minWidth) {
-      $('#vid').css({
-                        'height': '60vw',
-                        'width' : 'auto'
-                    });
-      $('#vid-placeholder').css({
-                                    'height': '60vw',
-                                    'width' : 'auto'
-                                });
-    } else {
-      $('#vid').css({
-                        'width': '93.3333vw',
-                        'height' : 'auto'
-                    });
-      $('#vid-placeholder').css({
-                                    'width': '93.3333vw',
-                                    'height' : 'auto'
-                                });
-    }
-  }
+  // var vid = document.getElementById('vid');
+  //
+  // if(isMobile()) {
+  //   vid.setAttribute('src', '../../assets/vid/fluid-sm.mp4');
+  //   document.getElementById('vid-placeholder').setAttribute('src', '../../assets/img/vid-fluid-sm.png');
+  //   vid.addEventListener('playing', function() {
+  //     $('#play-btn').css('visibility', 'hidden');
+  //     vidPlaying = true;
+  //   });
+  //   vid.addEventListener('pause', function() {
+  //     $('#pause-btn').css('visibility', 'hidden');
+  //     $('#play-btn').css('visibility', 'visible');
+  //     vidPlaying = false;
+  //   });
+  //   vid.addEventListener('ended', function() {
+  //     $('#vid-placeholder').css('z-index', '2');
+  //     $('#play-btn').css('visibility', 'visible');
+  //   });
+  //   $('#vid-wrapper').click(function() {
+  //     if(vidPlaying) {
+  //       vid.pause();
+  //     } else {
+  //       vid.play();
+  //       $('#vid-placeholder').css('z-index', '-1');
+  //     }
+  //   });
+  // } else {
+  //   vid.addEventListener('playing', function() {
+  //     $('#play-btn').css('visibility', 'hidden');
+  //     vidPlaying = true;
+  //   });
+  //   vid.addEventListener('pause', function() {
+  //     $('#pause-btn').css('visibility', 'hidden');
+  //     vidPlaying = false;
+  //   });
+  //   vid.addEventListener('ended', function() {
+  //     $('#vid-placeholder').css('z-index', '2');
+  //     $('#play-btn').css('visibility', 'visible');
+  //   });
+  //   $('#play-btn').click(function() {
+  //     vid.play();
+  //     $('#vid-placeholder').css('z-index', '-1');
+  //   });
+  //   $('#pause-btn').click(function() {
+  //     vid.pause();
+  //   });
+  //   $('#vid-wrapper').bind('mouseover', () => {
+  //     if(vidPlaying) {
+  //       $('#pause-btn').css('visibility', 'visible');
+  //     } else {
+  //       $('#play-btn').css('visibility', 'visible');
+  //     }
+  //   });
+  //   $('#vid-wrapper').bind('mouseout', () => {
+  //     $('#pause-btn').css('visibility', 'hidden');
+  //     $('#play-btn').css('visibility', 'hidden');
+  //   });
+  //   if(windowWidth <= minWidth) {
+  //     $('#vid').css({
+  //                       'height': '60vw',
+  //                       'width' : 'auto'
+  //                   });
+  //     $('#vid-placeholder').css({
+  //                                   'height': '60vw',
+  //                                   'width' : 'auto'
+  //                               });
+  //   } else {
+  //     $('#vid').css({
+  //                       'width': '93.3333vw',
+  //                       'height' : 'auto'
+  //                   });
+  //     $('#vid-placeholder').css({
+  //                                   'width': '93.3333vw',
+  //                                   'height' : 'auto'
+  //                               });
+  //   }
+  // }
 
   bgMode = 255;
   strokeMode = 0;
@@ -247,38 +249,40 @@ function windowResized() {
     numHorizontalLines = 27;
     colorLimX = windowWidth / grid_size;
     colorLimY = windowHeight / grid_size;
+    $('#vid').attr('src', 'https://player.vimeo.com/video/318688782');
   } else {
     responsiveMode = 1;
     maxVerticalLines = 15;
     numHorizontalLines = 36;
     colorLimX = windowWidth / grid_size / 2;
     colorLimY = windowHeight / grid_size / 2;
+    $('#vid').attr('src', 'https://player.vimeo.com/video/318685714');
   }
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * numHorizontalLines;
   colorLimY = windowHeight / grid_size / 2;
   resizeCanvas(windowWidth, h);
-  if(!isMobile()) {
-    if(windowWidth <= minWidth) {
-      $('#vid').css({
-                        'height': '60vw',
-                        'width' : 'auto'
-                    });
-      $('#vid-placeholder').css({
-                                    'height': '60vw',
-                                    'width' : 'auto'
-                                });
-    } else {
-      $('#vid').css({
-                        'width': '93.3333vw',
-                        'height' : 'auto'
-                    });
-      $('#vid-placeholder').css({
-                                    'width': '93.3333vw',
-                                    'height' : 'auto'
-                                });
-    }
-  }
+  // if(!isMobile()) {
+  //   if(windowWidth <= minWidth) {
+  //     $('#vid').css({
+  //                       'height': '60vw',
+  //                       'width' : 'auto'
+  //                   });
+  //     $('#vid-placeholder').css({
+  //                                   'height': '60vw',
+  //                                   'width' : 'auto'
+  //                               });
+  //   } else {
+  //     $('#vid').css({
+  //                       'width': '93.3333vw',
+  //                       'height' : 'auto'
+  //                   });
+  //     $('#vid-placeholder').css({
+  //                                   'width': '93.3333vw',
+  //                                   'height' : 'auto'
+  //                               });
+  //   }
+  // }
 }
 
 function isMobile() {
