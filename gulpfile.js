@@ -1,5 +1,6 @@
 const gulp = require('gulp');
-const sass = require('gulp-sass');
+// const sass = require('gulp-sass');
+// sass.compiler = require('node-sass');
 const uglifyes = require('uglify-es');
 const composer = require('gulp-uglify/composer');
 const uglify = composer(uglifyes, console);
@@ -7,11 +8,11 @@ const cssnano = require('gulp-cssnano');
 const rename = require('gulp-rename');
 const merge = require('merge-stream');
 
-gulp.task('sass', function() {
-  return gulp.src('assets/scss/styles.scss')
-    .pipe(sass())
-    .pipe(gulp.dest('assets/css'))
-});
+// gulp.task('sass', function() {
+//   return gulp.src('assets/scss/styles.scss')
+//     .pipe(sass())
+//     .pipe(gulp.dest('assets/css'))
+// });
 
 gulp.task('minify', function() {
   const motion = gulp.src('pages/motion/motion.js')
@@ -48,4 +49,4 @@ gulp.task('minify', function() {
   return streams;
 });
 
-gulp.task('default', gulp.series('sass', 'minify'));
+// gulp.task('default', gulp.series('sass', 'minify'));

@@ -447,6 +447,7 @@ div.home {
 }
 
 #vid {
+  object-fit: cover;
   width: 93.3333vw;
   -webkit-appearance: none;
 }

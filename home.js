@@ -287,7 +287,10 @@ function onLeaveMotion() {
   $('#light-logo').css('display', 'none');
   $('#large-logo').attr('src', 'assets/img/large-dark-logo.png');
   $('.title-fluid').css('color', 'black');
-  $('.title-motion').css('webkit-text-stroke', '0px');
+  $('.title-motion').css({
+                            'color': '#000',
+                            'webkit-text-stroke': '0px'
+                        });
   $('#img-motion').removeClass('show').addClass('hide').css('opacity', '0');
   $('.text').css('color', '#000');
   $('.about .title').not('.title-motion').css('color', '#000');
