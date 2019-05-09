@@ -372,6 +372,10 @@ div.home {
   letter-spacing: -0.008em;
 }
 
+.view-titles {
+  display: inline-flex;
+}
+
 .show {
   opacity: 0;
   visibility: visible;
@@ -497,6 +501,16 @@ div.home {
   -webkit-text-stroke: 0.5px #fff;
 }
 
+.lightmode .view-titles:hover a.title-fluid {
+  color: #fff;
+  -webkit-text-stroke: 0.5px #000;
+}
+
+.lightmode .view-titles:hover a.title-motion {
+  color: #313131;
+  -webkit-text-stroke: 0.5px #fff;
+}
+
 .lightmode .text {
   color: #000;
 }
@@ -520,6 +534,17 @@ div.home {
   color: #313131;
   -webkit-text-stroke: 0.5px #fff;
 }
+
+.darkmode .view-titles:hover a.title-fluid {
+  color: #fff;
+  -webkit-text-stroke: 0.5px #000;
+}
+
+.darkmode .view-titles:hover a.title-motion {
+  color: #313131;
+  -webkit-text-stroke: 0.5px #fff;
+}
+
 .darkmode .text {
   color: #fff;
 }
