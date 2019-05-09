@@ -4,8 +4,8 @@ var maxVerticalLines;
 var numHorizontalLines;
 var bgMode;
 var strokeMode;
-var bgChanged;
 var vidPlaying = false;
+var mouseMoveTimeout;
 
 // 0: small, 1: large
 var responsiveMode;
@@ -22,40 +22,44 @@ $(window).load(function() {
 });
 
 function setup() {
-  if( windowWidth <= minWidth ) {
-    responsiveMode = 0;
-    maxVerticalLines = 5;
-    numHorizontalLines = 27;
-    // $('#vid').attr('src', 'https://player.vimeo.com/video/318688774?muted=1');
-  } else {
-    responsiveMode = 1;
-    maxVerticalLines = 15;
-    numHorizontalLines = 36;
-    // $('#vid').attr('src', 'https://player.vimeo.com/video/318685762?muted=1');
-  }
-  grid_size = windowWidth / maxVerticalLines;
-  h = grid_size * numHorizontalLines;
-  canvas = createCanvas(windowWidth, h);
+  frameRate(60);
+  resize();
+  canvas = createCanvas(windowWidth+2, h+20);
   canvas.position(0, 0);
   canvas.style('z-index', '-1');
+  var gifs = $('.gif');
+  gifs.each(function(index) {
+    $(this).attr('src', $(this).attr('data-src'));
+  });
+
   $(function() {
     var $body = $(document);
     $body.bind('scroll', function() {
-      // "Disable" the horizontal scroll.
+      var gifs = document.getElementsByClassName('gif');
+      for(var i = 0; i < gifs.length; i++) {
+        var gif = gifs[i];
+        var bb = gif.getBoundingClientRect();
+        if(bb.top+bb.height >= 0 && bb.bottom-bb.height <= (window.innerHeight || document.documentElement.clientHeight))
+        {
+          if(gif.paused) {
+            gif.play();
+          }
+        } else {
+          if(!gif.paused) {
+            gif.pause();
+          }
+        }
+      }
       if ($body.scrollLeft() !== 0) {
         $body.scrollLeft(0);
       }
     });
   });
-  var gifs = $('.gif');
-  gifs.each(function(index) {
-    $(this).attr('src', $(this).attr('data-src'));
-  });
   $('.title-fluid').bind('mouseover', onHoverFluid).bind('mouseout', onLeaveFluid);
 
   // handles start and pause events
   var vid = document.getElementById('vid');
-  vid.load();
+  // vid.load();
 
   if(isMobile()) {
     document.getElementById('vid-placeholder').setAttribute('src', '../../assets/img/vid-motion-sm.png');
@@ -111,30 +115,11 @@ function setup() {
       $('#pause-btn').css('visibility', 'hidden');
       $('#play-btn').css('visibility', 'hidden');
     });
-    if(windowWidth <= minWidth) {
-      $('#vid').css({
-                        'height': '60vw',
-                        'width' : 'auto'
-                    });
-      $('#vid-placeholder').css({
-                                    'height': '60vw',
-                                    'width' : 'auto'
-                                });
-    } else {
-      $('#vid').css({
-                        'width': '93.3333vw',
-                        'height' : 'auto'
-                    });
-      $('#vid-placeholder').css({
-                                    'width': '93.3333vw',
-                                    'height' : 'auto'
-                                });
-    }
+
   }
 
   bgMode = 49;
   strokeMode = 255;
-  bgChanged = false;
   mouseMovedFlag = 0;
   mouseMovedCounter = 0;
   maxMouseMovedCounter = 25; // number of glitch ticks
@@ -147,6 +132,7 @@ function setup() {
   strokeWeight(0.5);
   background(bgMode);
   stroke(strokeMode);
+  noLoop();
 }
 
 function draw() {
@@ -171,6 +157,7 @@ function draw() {
     }
   } else {
     // reset all if neighboring lines change
+    console.log('resetting');
     mouseMovedFlag = 0;
     mouseMovedCounter = 0;
     offset = maxOffset;
@@ -182,11 +169,11 @@ function draw() {
       if (x > grid_size * 9 + 1 && x < grid_size * 14 - 1) {
         line(x, 0, x, grid_size);
         line( x, 14 * grid_size, x, 15* grid_size);
-        line(x, grid_size * 33, x, h);
+        line(x, grid_size * 33, x, h+20);
       } else if (x >= grid_size && x <= grid_size * 3) {
         line(x, 0, x, h - grid_size);
       } else {
-        line(x, 0, x, h);
+        line(x, 0, x, h+20);
       }
     } else if (responsiveMode == 0) {
       if(x == grid_size * 2) {
@@ -195,18 +182,18 @@ function draw() {
         line(x, grid_size * 20, x, h - grid_size * 2);
       } else if (x == grid_size) {
         line(x, 0, x, h - grid_size * 2);
-      } else if (x >= grid_size * 3 && x < windowWidth) {
+      } else if (x >= grid_size * 3 && x < windowWidth+20) {
         line(x, 0, x, grid_size * 2);
         line(x, grid_size * 10, x, grid_size * 11);
-        line(x, grid_size * 20, x, h);
+        line(x, grid_size * 20, x, h+20);
       } else {
-        line(x, 0, x, h);
+        line(x, 0, x, h+20);
       }
     }
   }
 
   // draw horizontal lines
-  for(var y = grid_size; y < h; y+=grid_size) {
+  for(var y = grid_size; y < h-1; y+=grid_size) {
     if(responsiveMode == 1) {
       if( (y > grid_size && y <= grid_size * 5) || (y >= grid_size * 19 + 1 && y <= grid_size * 21 - 1) || (y >= grid_size * 25 + 1 && y <= grid_size * 27 - 1) || (y >= grid_size * 31 + 1 && y <= grid_size * 33 - 1) ) {
         line(0, y, grid_size * 9, y);
@@ -267,67 +254,48 @@ function draw() {
     prevLeft = left;
     prevRight = right;
   }
+
+  // console.log(frameRate())
 }
+
 
 function onHoverFluid() {
   bgMode = 255;
   strokeMode = 0;
-  $('.title-fluid').css( {
-                            'color': '#FFF',
-                            '-webkit-text-stroke': ' #000 0.5px'
-                          } );
-  $('.text').css('color', "#000");
-  $('.title-motion').css('color', "#000");
-  $('#large-logo').attr('src', '../../assets/img/large-dark-logo.png');
-  // $('.white-space').css('background-color', '#FFF');
+  $('body').removeClass('darkmode').addClass('lightmode');
+  loop();
 }
 
 function onLeaveFluid() {
   bgMode = 49;
   strokeMode = 255;
-  $('.title-fluid').css('-webkit-text-stroke', '0px');
-  $('.text').css('color', "#FFF");
-  $('.title-motion').css('color', "#FFF");
-  $('#large-logo').attr('src', '../../assets/img/large-light-logo.png');
-  // $('.white-space').css('background-color', '#000');
+  $('body').removeClass('lightmode').addClass('darkmode');
+  noLoop();
 }
 
-function windowResized() {
+function resize () {
   if( windowWidth <= minWidth ) {
     responsiveMode = 0;
     maxVerticalLines = 5;
     numHorizontalLines = 27;
-    // $('#vid').attr('src', 'https://player.vimeo.com/video/318688774?muted=1');
   } else {
     responsiveMode = 1;
     maxVerticalLines = 15;
     numHorizontalLines = 36;
-    // $('#vid').attr('src', 'https://player.vimeo.com/video/318685762?muted=1');
   }
   grid_size = windowWidth / maxVerticalLines;
   h = grid_size * numHorizontalLines;
-  resizeCanvas(windowWidth, h);
-  if(!isMobile()) {
-    if(windowWidth <= minWidth) {
-      $('#vid').css({
-                        'height': '60vw',
-                        'width' : 'auto'
-                    });
-      $('#vid-placeholder').css({
-                                    'height': '60vw',
-                                    'width' : 'auto'
-                                });
-    } else {
-      $('#vid').css({
-                        'width': '93.3333vw',
-                        'height' : 'auto'
-                    });
-      $('#vid-placeholder').css({
-                                    'width': '93.3333vw',
-                                    'height' : 'auto'
-                                });
-    }
-  }
+}
+
+function mouseMoved() {
+  loop();
+  clearTimeout(mouseMoveTimeout);
+  mouseMoveTimeout = setTimeout( () => {noLoop();}, maxMouseMovedCounter/frameRate()*1000);
+}
+
+function windowResized() {
+  resize();
+  resizeCanvas(windowWidth+2, h+20);
 }
 
 function isMobile() {
