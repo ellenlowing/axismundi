@@ -773,6 +773,10 @@ div.home {
     letter-spacing: 0.006em;
   }
 
+  .view-titles {
+    display: block;
+  }
+
   /* Custom elements styling */
 
   #large-logo {

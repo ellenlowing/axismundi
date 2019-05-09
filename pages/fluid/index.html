@@ -37,7 +37,7 @@
       <div class="row space-8 space-sm-3">
         <div id="vid-wrapper" class="col-14 col-sm-5">
           <!-- <iframe id="vid" class="space-8 space-sm-3" src="https://player.vimeo.com/video/318685714?muted=1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
-          <video playsinline id="vid" src="https://s3.us-east-2.amazonaws.com/axismundi/fluid-lg.mp4" poster="../../assets/img/vid-fluid-lg.png" class="space-8 space-sm-3" controlsList="nodownload nofullscreen noremoteplayback" muted></video>
+          <video playsinline id="vid" src="https://s3.us-east-2.amazonaws.com/axismundi/fluid-lg.mp4" poster="../../assets/img/vid-fluid-lg.png" class="space-8 space-sm-3" preload="none" controlsList="nodownload nofullscreen noremoteplayback" muted></video>
           <img id="vid-placeholder" class="space-8 space-sm-3" src="../../assets/img/vid-fluid-lg.png" alt="">
           <svg id="play-btn" width="263px" height="263px" viewBox="0 0 263 263" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <desc>Created with Sketch.</desc>
@@ -73,7 +73,10 @@
       <div class="row space-4 space-sm-2">
         <div class="col-6 col-sm-1"></div>
         <div class="col-8 col-sm-4">
-          <video class="space-4 space-sm-2 gif" data-src="../../assets/img/gif-fluid-1.webm" preload="auto" muted loop poster="../../assets/img/img-fluid-1.jpg"></video>
+          <video class="space-4 space-sm-2 gif" data-src="../../assets/img/gif-fluid-1.webm" preload="none" muted loop poster="../../assets/img/img-fluid-1.jpg">
+            <source src="../../assets/img/gif-fluid-1.webm" type="video/webm">
+            <source src="../../assets/img/gif-fluid-1.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="col-1"></div>
       </div>
@@ -89,7 +92,10 @@
       <div class="row space-4 space-sm-2">
         <div class="col-6 col-sm-1"></div>
         <div class="col-8 col-sm-4">
-          <video class="space-4 space-sm-2 gif" data-src="../../assets/img/gif-fluid-2.webm" preload="auto" muted loop poster="../../assets/img/img-fluid-2.jpg"></video>
+          <video class="space-4 space-sm-2 gif" data-src="../../assets/img/gif-fluid-2.webm" preload="none" muted loop poster="../../assets/img/img-fluid-2.jpg">
+            <source src="../../assets/img/gif-fluid-2.webm" type="video/webm">
+            <source src="../../assets/img/gif-fluid-2.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="col-1"></div>
       </div>
@@ -106,7 +112,10 @@
       <div class="row space-4 space-sm-2">
         <div class="col-6 col-sm-1"></div>
         <div class="col-8 col-sm-4">
-          <video class="space-4 space-sm-2 gif" data-src="../../assets/img/gif-fluid-3.webm" preload="auto" muted loop poster="../../assets/img/img-fluid-3.jpg"></video>
+          <video class="space-4 space-sm-2 gif" data-src="../../assets/img/gif-fluid-3.webm" preload="none" muted loop poster="../../assets/img/img-fluid-3.jpg">
+            <source src="../../assets/img/gif-fluid-3.webm" type="video/webm">
+            <source src="../../assets/img/gif-fluid-3.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="col-1"></div>
       </div>

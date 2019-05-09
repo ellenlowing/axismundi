@@ -28,10 +28,10 @@ function setup() {
   canvas.position(0, 0);
   canvas.style('z-index', '-1');
 
-  var gifs = $('.gif');
-  gifs.each(function(index) {
-    $(this).attr('src', $(this).attr('data-src'));
-  });
+  // var gifs = $('.gif');
+  // gifs.each(function(index) {
+  //   $(this).attr('src', $(this).attr('data-src'));
+  // });
 
   $(function() {
     var $body = $(document);
@@ -43,6 +43,7 @@ function setup() {
         if(bb.top+bb.height >= 0 && bb.bottom-bb.height <= (window.innerHeight || document.documentElement.clientHeight))
         {
           if(gif.paused) {
+            if(gif.readyState != 4) gif.load();
             gif.play();
           }
         } else {
@@ -84,6 +85,7 @@ function setup() {
       if(vidPlaying) {
         vid.pause();
       } else {
+        if(vid.readyState != 4) vid.load();
         vid.play();
         $('#vid-placeholder').css('z-index', '-1');
       }
@@ -94,6 +96,7 @@ function setup() {
       vidPlaying = false;
     });
     $('#play-btn').click(function() {
+      if(vid.readyState != 4) vid.load();
       vid.play();
       $('#vid-placeholder').css('z-index', '-1');
     });
