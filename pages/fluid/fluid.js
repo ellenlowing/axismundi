@@ -75,6 +75,7 @@ function setup() {
     $('#vid-placeholder').css('z-index', '2');
     $('#play-btn').css('visibility', 'visible');
   });
+
   if(isMobile()) {
     vid.addEventListener('pause', function() {
       $('#pause-btn').css('visibility', 'hidden');

@@ -197,6 +197,12 @@ function mouseMoved() {
   mouseMoveTimeout = setTimeout( () => {noLoop();}, 500);
 }
 
+function mousePressed() {
+  loop();
+  clearTimeout(mouseMoveTimeout);
+  mouseMoveTimeout = setTimeout( () => {noLoop();}, 500);
+}
+
 function resize() {
 
   if( windowWidth <= mobileWidth ) {

@@ -27,10 +27,11 @@ function setup() {
   canvas = createCanvas(windowWidth+2, h+20);
   canvas.position(0, 0);
   canvas.style('z-index', '-1');
-  var gifs = $('.gif');
-  gifs.each(function(index) {
-    $(this).attr('src', $(this).attr('data-src'));
-  });
+
+  // var gifs = $('.gif');
+  // gifs.each(function(index) {
+  //   $(this).attr('src', $(this).attr('data-src'));
+  // });
 
   $(function() {
     var $body = $(document);
@@ -42,6 +43,7 @@ function setup() {
         if(bb.top+bb.height >= 0 && bb.bottom-bb.height <= (window.innerHeight || document.documentElement.clientHeight))
         {
           if(gif.paused) {
+            if(gif.readyState != 4) gif.load();
             gif.play();
           }
         } else {
@@ -59,45 +61,37 @@ function setup() {
 
   // handles start and pause events
   var vid = document.getElementById('vid');
-  // vid.load();
+  vid.addEventListener('playing', function() {
+    $('#play-btn').css('visibility', 'hidden');
+    vidPlaying = true;
+  });
+  vid.addEventListener('ended', function() {
+    $('#vid-placeholder').css('z-index', '2');
+    $('#play-btn').css('visibility', 'visible');
+  });
 
   if(isMobile()) {
-    document.getElementById('vid-placeholder').setAttribute('src', '../../assets/img/vid-motion-sm.png');
-    vid.addEventListener('playing', function() {
-      $('#play-btn').css('visibility', 'hidden');
-      vidPlaying = true;
-    });
     vid.addEventListener('pause', function() {
       $('#pause-btn').css('visibility', 'hidden');
       $('#play-btn').css('visibility', 'visible');
       vidPlaying = false;
-    });
-    vid.addEventListener('ended', function() {
-      $('#vid-placeholder').css('z-index', '2');
-      $('#play-btn').css('visibility', 'visible');
     });
     $('#vid-wrapper').click(function() {
       if(vidPlaying) {
         vid.pause();
       } else {
+        if(vid.readyState != 4) vid.load();
         vid.play();
         $('#vid-placeholder').css('z-index', '-1');
       }
     });
   } else {
-    vid.addEventListener('playing', function() {
-      $('#play-btn').css('visibility', 'hidden');
-      vidPlaying = true;
-    });
     vid.addEventListener('pause', function() {
       $('#pause-btn').css('visibility', 'hidden');
       vidPlaying = false;
     });
-    vid.addEventListener('ended', function() {
-      $('#vid-placeholder').css('z-index', '2');
-      $('#play-btn').css('visibility', 'visible');
-    });
     $('#play-btn').click(function() {
+      if(vid.readyState != 4) vid.load();
       vid.play();
       $('#vid-placeholder').css('z-index', '-1');
     });
@@ -157,7 +151,6 @@ function draw() {
     }
   } else {
     // reset all if neighboring lines change
-    console.log('resetting');
     mouseMovedFlag = 0;
     mouseMovedCounter = 0;
     offset = maxOffset;
@@ -254,8 +247,6 @@ function draw() {
     prevLeft = left;
     prevRight = right;
   }
-
-  // console.log(frameRate())
 }
 
 
@@ -288,6 +279,12 @@ function resize () {
 }
 
 function mouseMoved() {
+  loop();
+  clearTimeout(mouseMoveTimeout);
+  mouseMoveTimeout = setTimeout( () => {noLoop();}, maxMouseMovedCounter/frameRate()*1000);
+}
+
+function mousePressed() {
   loop();
   clearTimeout(mouseMoveTimeout);
   mouseMoveTimeout = setTimeout( () => {noLoop();}, maxMouseMovedCounter/frameRate()*1000);
