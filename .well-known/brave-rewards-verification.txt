@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: axismundi.info
+Token: d4efcb59c58440d1ca9e386808b29a9a44fafbd60f6589157a9d22c15f21f63b
